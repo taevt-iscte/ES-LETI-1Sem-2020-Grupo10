@@ -1,5 +1,15 @@
 package Team_Troopers.ES_Project;
 
+import java.io.File;
+import java.io.IOException;
+
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.poifs.filesystem.POIFSFileSystem;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
+
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -10,10 +20,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 
 /**
  * JavaFX App
@@ -23,6 +32,7 @@ public class App extends Application implements EventHandler<ActionEvent> {
     private static Scene scene;
     private Button importButton;
 	private Button avaliarButton;
+	private Workbook book;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -31,7 +41,15 @@ public class App extends Application implements EventHandler<ActionEvent> {
     	
     	importButton = new Button();
     	importButton.setText("Importar Excel");
-    	importButton.setOnAction(this);
+    	importButton.setOnAction((ActionEvent e) -> {
+    		FileChooser fc = new FileChooser();
+    		fc.getExtensionFilters().add(new ExtensionFilter("Excel XLSX", "*.xlsx"));
+    		File excel = fc.showOpenDialog(stage);
+    		if (excel == null)
+    			return;
+    		System.out.println(excel.getAbsolutePath() + " Loaded...");
+    		
+    	});
     	
     	avaliarButton = new Button("Avaliar");
     	avaliarButton.setOnAction(this);
