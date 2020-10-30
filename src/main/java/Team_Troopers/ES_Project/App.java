@@ -25,9 +25,9 @@ public class App extends Application implements EventHandler<ActionEvent> {
 	private Button avaliarButton;
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) throws IOException, InterruptedException {
     	
-    	stage.setTitle("Title");
+    /*	stage.setTitle("Title");
     	
     	importButton = new Button();
     	importButton.setText("Importar Excel");
@@ -49,13 +49,17 @@ public class App extends Application implements EventHandler<ActionEvent> {
     	
     	BorderPane borderPane = new BorderPane();
     	borderPane.setBottom(bottomMenu);
-    	
-   
-   
+    */	
+    
+    	FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("primary.fxml"));
+        Parent root = loader.load();
         //scene = new Scene(loadFXML("primary"), 640, 480);
-    	Scene scene = new Scene(borderPane, 300, 250);
+    
+    	Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+        
     }
     
     @Override 
