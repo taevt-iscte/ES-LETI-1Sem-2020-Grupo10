@@ -10,11 +10,15 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.stage.Stage;
 
 public class PrimaryController implements Initializable {
 
@@ -22,7 +26,7 @@ public class PrimaryController implements Initializable {
 	@FXML private Button importExcel;
 	@FXML private ComboBox<String> avaliarTools;
 	private Sheet sheet;
-	private ExcelController exCtrl;
+	private Stage excelWindow;
 	
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
@@ -33,6 +37,9 @@ public class PrimaryController implements Initializable {
 		FileChooser fc = new FileChooser();
 		fc.getExtensionFilters().add(new ExtensionFilter("XLSX File", "*.xlsx"));
 		File f = fc.showOpenDialog(null);
+		if (excelWindow != null) {
+			excelWindow.close();
+		}
 		try {
 			sheet = WorkbookFactory.create(f).getSheetAt(0);
 		} catch (EncryptedDocumentException e) {
@@ -50,7 +57,20 @@ public class PrimaryController implements Initializable {
 			e.printStackTrace();
 			return ;
 		}
-		exCtrl = new ExcelController(sheet);
+		ExcelController exCtrl = new ExcelController(sheet);
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("excelView.fxml"));
+		try {
+			loader.setController(exCtrl);
+			Scene scene = new Scene(loader.load(), 800, 600);
+			excelWindow = new Stage();
+			excelWindow.setTitle(sheet.getSheetName());
+			excelWindow.setScene(scene);
+			excelWindow.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	
