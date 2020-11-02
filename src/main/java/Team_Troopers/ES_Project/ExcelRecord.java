@@ -9,14 +9,14 @@ public class ExcelRecord {
 	private int loc;
 	private int cyclo;
 	private int atfd;
-	private float laa;
+	private double laa;
 	private boolean is_long_method;
 	private boolean iPlasma;
-	private boolean pMD;
+	private boolean pmd;
 	private boolean is_feature_envy;
 	
 	
-	public ExcelRecord(int id, String package_, String class_, String method, int loc, int cyclo, int atfd, float laa,
+	public ExcelRecord(int id, String package_, String class_, String method, int loc, int cyclo, int atfd, double laa,
 			boolean is_long_method, boolean iPlasma, boolean pMD, boolean is_feature_envy) {
 		super();
 		this.id = id;
@@ -29,7 +29,7 @@ public class ExcelRecord {
 		this.laa = laa;
 		this.is_long_method = is_long_method;
 		this.iPlasma = iPlasma;
-		this.pMD = pMD;
+		this.pmd = pMD;
 		this.is_feature_envy = is_feature_envy;
 	}
 
@@ -104,12 +104,12 @@ public class ExcelRecord {
 	}
 
 
-	public float getLaa() {
+	public double getLaa() {
 		return laa;
 	}
 
 
-	public void setLaa(float laa) {
+	public void setLaa(double laa) {
 		this.laa = laa;
 	}
 
@@ -124,23 +124,23 @@ public class ExcelRecord {
 	}
 
 
-	public boolean isiPlasma() {
+	public boolean isIPlasma() {
 		return iPlasma;
 	}
 
 
-	public void setiPlasma(boolean iPlasma) {
+	public void setIPlasma(boolean iPlasma) {
 		this.iPlasma = iPlasma;
 	}
 
 
-	public boolean ispMD() {
-		return pMD;
+	public boolean isPmd() {
+		return pmd;
 	}
 
 
-	public void setpMD(boolean pMD) {
-		this.pMD = pMD;
+	public void setPmd(boolean pMD) {
+		this.pmd = pMD;
 	}
 
 

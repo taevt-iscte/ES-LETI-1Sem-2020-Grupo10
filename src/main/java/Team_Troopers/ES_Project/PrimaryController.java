@@ -64,6 +64,7 @@ public class PrimaryController implements Initializable {
 			loader.setController(exCtrl);
 			Scene scene = new Scene(loader.load(), 800, 600);
 			excelWindow = new Stage();
+			excelWindow.setMaximized(true);
 			excelWindow.setTitle(sheet.getSheetName());
 			excelWindow.setScene(scene);
 			excelWindow.show();

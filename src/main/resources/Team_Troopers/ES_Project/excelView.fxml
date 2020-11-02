@@ -9,11 +9,11 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
+<BorderPane prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
       <TableView fx:id="table">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn maxWidth="-1.0" prefWidth="-1.0" text="C1" />
           <TableColumn prefWidth="75.0" text="C2" />
         </columns>
          <opaqueInsets>
@@ -23,5 +23,5 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-   </children>
-</VBox>
+   </center>
+</BorderPane>
