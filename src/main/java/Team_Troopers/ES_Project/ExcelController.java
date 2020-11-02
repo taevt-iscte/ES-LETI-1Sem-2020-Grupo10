@@ -11,6 +11,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
@@ -19,23 +20,39 @@ public class ExcelController implements Initializable {
 	private static Sheet sheet;
 	@FXML
 	private TableView<ExcelRecord> table;
-	private DataFormatter df;
-
+	
 	public ExcelController(Sheet sheet) {
-		this.sheet = sheet;
-		df = new DataFormatter(Locale.US);
+		ExcelController.sheet = sheet;
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		addColumns();
-
+		
+		table.setRowFactory(tv -> new TableRow<ExcelRecord>() {
+			@Override
+			protected void updateItem(ExcelRecord er, boolean empty) {
+				super.updateItem(er, empty);
+				if (er == null)
+					return;
+				if (er.isIs_long_method() && er.isIPlasma() && er.isPmd())
+					setStyle("-fx-background-color: #649568");
+				else if (er.isIs_long_method() && !(er.isIPlasma() && er.isPmd()))
+					setStyle("-fx-background-color: #EFFD5F");
+				else if (!er.isIs_long_method() && (er.isIPlasma() || er.isPmd()))
+					setStyle("-fx-background-color: #FF8B3D");
+				else if (!er.isIs_long_method() && !er.isIPlasma() && !er.isPmd())
+					setStyle("-fx-background-color: #7AD7F0");
+			}
+		});
+		
 		for (int r = 1; r < sheet.getLastRowNum(); r++) {
 			table.getItems().add(getRecordFromRow(sheet.getRow(r)));
 		}
-		table.autosize();
+//		table.autosize();
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void addColumns() {
 		TableColumn id = new TableColumn<>("MethodID");
 		id.setCellValueFactory(new PropertyValueFactory<ExcelRecord, Integer>("id"));
@@ -80,6 +97,8 @@ public class ExcelController implements Initializable {
 			break;
 		case STRING:
 			laa = Double.parseDouble(r.getCell(7).getStringCellValue());
+			break;
+		default:
 			break;
 		}
 		boolean is_long_method = r.getCell(8).getBooleanCellValue();

@@ -3,12 +3,14 @@ package Team_Troopers.ES_Project;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -16,9 +18,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public class PrimaryController implements Initializable {
 
@@ -27,16 +31,36 @@ public class PrimaryController implements Initializable {
 	@FXML private ComboBox<String> avaliarTools;
 	private Sheet sheet;
 	private Stage excelWindow;
+	private boolean set = false;
 	
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		avaliarTools.getItems().addAll("Textual", "Tabular", "Gráfica");
 	}
 	
+	public void closeMainWindow(WindowEvent e) {
+		if (sheet == null)
+			return;
+		Alert confirm = new Alert(AlertType.CONFIRMATION);
+		confirm.setTitle("Confirmation");
+		confirm.setHeaderText("You have an excel view open, exit?");
+		Optional<ButtonType> response = confirm.showAndWait();
+		if (response.get() == ButtonType.OK)
+			excelWindow.close();
+		else
+			e.consume();
+	}
+	
 	public void importAction() {
+		if (!set) {
+			set = true;
+			importExcel.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, this::closeMainWindow);
+		}
 		FileChooser fc = new FileChooser();
 		fc.getExtensionFilters().add(new ExtensionFilter("XLSX File", "*.xlsx"));
 		File f = fc.showOpenDialog(null);
+		if (f == null)
+			return;
 		if (excelWindow != null) {
 			excelWindow.close();
 		}
