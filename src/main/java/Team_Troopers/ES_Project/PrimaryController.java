@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -28,30 +29,22 @@ import javafx.stage.WindowEvent;
 
 public class PrimaryController implements Initializable {
 
-<<<<<<< HEAD
-	@FXML
-	private Button importExcel;
-	@FXML
-	private ComboBox<String> avaliarTools;
-	@FXML
-	private Button submitButton;
-	private Sheet sheet;
-=======
-	
 	@FXML private Button importExcel;
 	@FXML private ComboBox<String> avaliarTools;
 	@FXML private Button submitButton;
 	private static Sheet sheet;
->>>>>>> branch 'master' of git@github.com:taevt-iscte/ES-LETI-1Sem-2020-Grupo10.git
+
 	private Stage excelWindow;
 	private boolean set = false;
 	private Stage textualWindow;
 	private ArrayList<ExcelRecord> recordList;
+	private HashMap<EvalType, Integer> counting;
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		avaliarTools.getItems().addAll("Textual", "Tabular", "Gráfica");
 		recordList = new ArrayList<ExcelRecord>();
+		counting = new HashMap<EvalType, Integer>();
 	}
 
 	public void closeMainWindow(WindowEvent e) {
@@ -98,6 +91,7 @@ public class PrimaryController implements Initializable {
 			return;
 		}
 		getRecordList();
+		countTypes();
 		ExcelController exCtrl = new ExcelController(recordList);
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("excelView.fxml"));
@@ -118,6 +112,12 @@ public class PrimaryController implements Initializable {
 			e.printStackTrace();
 		}
 
+	}
+
+	private void countTypes() {
+		recordList.forEach(record -> {
+			counting.put(record.getEval(), counting.getOrDefault(record.getEval(), 0)+1);
+		});
 	}
 
 	public void avaliarTool() {
