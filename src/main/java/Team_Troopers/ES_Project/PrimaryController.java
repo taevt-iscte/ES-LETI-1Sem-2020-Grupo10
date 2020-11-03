@@ -28,21 +28,11 @@ import javafx.stage.WindowEvent;
 
 public class PrimaryController implements Initializable {
 
-<<<<<<< HEAD
-	@FXML
-	private Button importExcel;
-	@FXML
-	private ComboBox<String> avaliarTools;
-	@FXML
-	private Button submitButton;
-	private Sheet sheet;
-=======
-	
 	@FXML private Button importExcel;
 	@FXML private ComboBox<String> avaliarTools;
 	@FXML private Button submitButton;
 	private static Sheet sheet;
->>>>>>> branch 'master' of git@github.com:taevt-iscte/ES-LETI-1Sem-2020-Grupo10.git
+
 	private Stage excelWindow;
 	private boolean set = false;
 	private Stage textualWindow;
@@ -137,10 +127,10 @@ public class PrimaryController implements Initializable {
 	}
 
 	public void textualAction() {
-		if(sheet == null) {
+		if(recordList == null) {
 			return;
 		}
-		TextualController textCtrl = new TextualController(sheet);
+		TextualController textCtrl = new TextualController(recordList);
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("textualView.fxml"));
 		try {

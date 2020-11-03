@@ -1,6 +1,7 @@
 package Team_Troopers.ES_Project;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import org.apache.poi.ss.usermodel.DataFormatter;
@@ -11,10 +12,10 @@ import javafx.fxml.Initializable;
 
 public class TextualController implements Initializable {
 	
-	private static Sheet sheet;
+	private ArrayList<ExcelRecord> recordList;
 	
-	public TextualController(Sheet sheet) {
-		this.sheet = sheet;
+	public TextualController(ArrayList<ExcelRecord> recordList) {
+		this.recordList = recordList;
 	}
 
 	@Override
