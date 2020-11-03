@@ -14,6 +14,7 @@ public class ExcelRecord {
 	private boolean iPlasma;
 	private boolean pmd;
 	private boolean is_feature_envy;
+	private EvalType eval;
 	
 	
 	public ExcelRecord(int id, String package_, String class_, String method, int loc, int cyclo, int atfd, double laa,
@@ -31,6 +32,23 @@ public class ExcelRecord {
 		this.iPlasma = iPlasma;
 		this.pmd = pMD;
 		this.is_feature_envy = is_feature_envy;
+		evaluate();
+	}
+
+
+	private void evaluate() {
+		if (is_long_method && iPlasma && pmd)
+			eval = EvalType.DCI;
+		else if (is_long_method && !(iPlasma && pmd))
+			eval = EvalType.DII;
+		else if (!is_long_method && (iPlasma || pmd))
+			eval = EvalType.ADII;
+		else if (!is_long_method && !iPlasma && !pmd)
+			eval = EvalType.ADCI;
+	}
+	
+	public EvalType getEval() {
+		return eval;
 	}
 
 

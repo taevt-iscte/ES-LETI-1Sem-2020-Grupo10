@@ -92,6 +92,7 @@ public class PrimaryController implements Initializable {
 			excelWindow.setTitle(sheet.getSheetName());
 			excelWindow.setScene(scene);
 			excelWindow.show();
+			scene.getWindow().addEventHandler(WindowEvent.WINDOW_CLOSE_REQUEST, (e) -> {excelWindow = null; sheet = null;});
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

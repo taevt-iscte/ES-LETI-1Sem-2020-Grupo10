@@ -35,14 +35,20 @@ public class ExcelController implements Initializable {
 				super.updateItem(er, empty);
 				if (er == null)
 					return;
-				if (er.isIs_long_method() && er.isIPlasma() && er.isPmd())
+				switch(er.getEval()) {
+				case DCI:
 					setStyle("-fx-background-color: #649568");
-				else if (er.isIs_long_method() && !(er.isIPlasma() && er.isPmd()))
+					break;
+				case DII:
 					setStyle("-fx-background-color: #EFFD5F");
-				else if (!er.isIs_long_method() && (er.isIPlasma() || er.isPmd()))
+					break;
+				case ADII:
 					setStyle("-fx-background-color: #FF8B3D");
-				else if (!er.isIs_long_method() && !er.isIPlasma() && !er.isPmd())
+					break;
+				case ADCI:
 					setStyle("-fx-background-color: #7AD7F0");
+					break;
+				}
 			}
 		});
 		
