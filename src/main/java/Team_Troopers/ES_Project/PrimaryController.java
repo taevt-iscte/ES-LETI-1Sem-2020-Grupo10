@@ -29,9 +29,11 @@ public class PrimaryController implements Initializable {
 	
 	@FXML private Button importExcel;
 	@FXML private ComboBox<String> avaliarTools;
+	@FXML private Button submitButton;
 	private Sheet sheet;
 	private Stage excelWindow;
 	private boolean set = false;
+	private Stage textualWindow;
 	
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
@@ -99,10 +101,49 @@ public class PrimaryController implements Initializable {
 		}
 		
 	}
-	
-	
-	
+		
+	public void avaliarTool() {
+		String choice = avaliarTools.getValue();
+		if(choice.equals("Textual")) {
+			System.out.println("Textual");
+			textualAction();
+		}
+		else {
+			if(choice.equals("Tabular")) {
+				System.out.println("Tabular");
+				tabularAction();
+			}
+			else {
+				System.out.println("Gráfica");
+				graficoAction();
+			}
+		}
+	}
     
+	public void textualAction() {
+		TextualController textCtrl = new TextualController();
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("textualView.fxml"));
+		try {
+			loader.setController(textCtrl);
+			Scene scene = new Scene(loader.load(), 800, 600);
+			textualWindow = new Stage();
+			textualWindow.setMaximized(false);
+			textualWindow.setTitle("Ferramenta Textual");
+			textualWindow.setScene(scene);
+			textualWindow.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void tabularAction() {
+		
+	}
+	
+	public void graficoAction() {
+		
+	}
     /*private void switchToSecondary() throws IOException {
         App.setRoot("secondary");
     }*/
