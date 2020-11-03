@@ -30,7 +30,7 @@ public class PrimaryController implements Initializable {
 	@FXML private Button importExcel;
 	@FXML private ComboBox<String> avaliarTools;
 	@FXML private Button submitButton;
-	private Sheet sheet;
+	private static Sheet sheet;
 	private Stage excelWindow;
 	private boolean set = false;
 	private Stage textualWindow;
@@ -121,7 +121,10 @@ public class PrimaryController implements Initializable {
 	}
     
 	public void textualAction() {
-		TextualController textCtrl = new TextualController();
+		if(sheet == null) {
+			return;
+		}
+		TextualController textCtrl = new TextualController(sheet);
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("textualView.fxml"));
 		try {
