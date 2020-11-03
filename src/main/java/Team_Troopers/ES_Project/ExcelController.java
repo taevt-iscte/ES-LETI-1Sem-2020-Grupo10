@@ -1,14 +1,10 @@
 package Team_Troopers.ES_Project;
 
 import java.net.URL;
-
-import java.util.Locale;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import org.apache.poi.ss.usermodel.DataFormatter;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -18,25 +14,25 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class ExcelController implements Initializable {
 
-	private static Sheet sheet;
 	@FXML
 	private TableView<ExcelRecord> table;
-	
-	public ExcelController(Sheet sheet) {
-		ExcelController.sheet = sheet;
+	private static ArrayList<ExcelRecord> recordList;
+
+	public ExcelController(ArrayList<ExcelRecord> recordList) {
+		ExcelController.recordList = recordList;
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		addColumns();
-		
+
 		table.setRowFactory(tv -> new TableRow<ExcelRecord>() {
 			@Override
 			protected void updateItem(ExcelRecord er, boolean empty) {
 				super.updateItem(er, empty);
 				if (er == null)
 					return;
-				switch(er.getEval()) {
+				switch (er.getEval()) {
 				case DCI:
 					setStyle("-fx-background-color: #649568");
 					break;
@@ -52,10 +48,8 @@ public class ExcelController implements Initializable {
 				}
 			}
 		});
-		
-		for (int r = 1; r < sheet.getLastRowNum(); r++) {
-			table.getItems().add(getRecordFromRow(sheet.getRow(r)));
-		}
+
+		table.getItems().setAll(FXCollections.observableArrayList(recordList));
 //		table.autosize();
 	}
 
@@ -86,33 +80,6 @@ public class ExcelController implements Initializable {
 		TableColumn is_feature_envy = new TableColumn<>("is_feature_envy");
 		is_feature_envy.setCellValueFactory(new PropertyValueFactory<ExcelRecord, Integer>("is_feature_envy"));
 		table.getColumns().setAll(id, package_, class_, method, loc, cyclo, atfd, laa, is_long_method, iPlasma, pmd,
-				is_feature_envy);
-	}
-
-	private ExcelRecord getRecordFromRow(Row r) {
-		int id = (int) r.getCell(0).getNumericCellValue();
-		String package_ = r.getCell(1).getStringCellValue();
-		String class_ = r.getCell(2).getStringCellValue();
-		String method = r.getCell(3).getStringCellValue();
-		int loc = (int) r.getCell(4).getNumericCellValue();
-		int cyclo = (int) r.getCell(5).getNumericCellValue();
-		int atfd = (int) r.getCell(6).getNumericCellValue();
-		double laa = 0;
-		switch (r.getCell(7).getCellType()) {
-		case NUMERIC:
-			laa = r.getCell(7).getNumericCellValue();
-			break;
-		case STRING:
-			laa = Double.parseDouble(r.getCell(7).getStringCellValue());
-			break;
-		default:
-			break;
-		}
-		boolean is_long_method = r.getCell(8).getBooleanCellValue();
-		boolean iPlasma = r.getCell(9).getBooleanCellValue();
-		boolean pmd = r.getCell(10).getBooleanCellValue();
-		boolean is_feature_envy = r.getCell(11).getBooleanCellValue();
-		return new ExcelRecord(id, package_, class_, method, loc, cyclo, atfd, laa, is_long_method, iPlasma, pmd,
 				is_feature_envy);
 	}
 
