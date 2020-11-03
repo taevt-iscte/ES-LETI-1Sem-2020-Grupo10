@@ -11,10 +11,10 @@ import javafx.fxml.Initializable;
 
 public class TextualController implements Initializable {
 	
-	private Sheet sheet;
+	private static Sheet sheet;
 	
-	public TextualController() {
-		
+	public TextualController(Sheet sheet) {
+		this.sheet = sheet;
 	}
 
 	@Override
