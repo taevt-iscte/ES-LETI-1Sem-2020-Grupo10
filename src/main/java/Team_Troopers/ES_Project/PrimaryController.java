@@ -161,6 +161,24 @@ public class PrimaryController implements Initializable {
 	}
 
 	public void graficoAction() {
+		if(recordList == null) {
+			return;
+		}
+		
+		ChartController graphcontrol = new ChartController(counting);
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("graphicsView.fxml"));
+		try {
+			loader.setController(graphcontrol);
+			Scene scene = new Scene(loader.load(), 800, 600);
+			textualWindow = new Stage();
+			textualWindow.setMaximized(false);
+			textualWindow.setTitle("Ferramenta Gráfica");
+			textualWindow.setScene(scene);
+			textualWindow.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 	}
 
