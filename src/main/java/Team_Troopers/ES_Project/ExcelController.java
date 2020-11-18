@@ -8,7 +8,6 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
@@ -26,28 +25,28 @@ public class ExcelController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		addColumns();
 
-		table.setRowFactory(tv -> new TableRow<ExcelRecord>() {
-			@Override
-			protected void updateItem(ExcelRecord er, boolean empty) {
-				super.updateItem(er, empty);
-				if (er == null)
-					return;
-				switch (er.getEval()) {
-				case DCI:
-					setStyle("-fx-background-color: #649568");
-					break;
-				case DII:
-					setStyle("-fx-background-color: #EFFD5F");
-					break;
-				case ADII:
-					setStyle("-fx-background-color: #FF8B3D");
-					break;
-				case ADCI:
-					setStyle("-fx-background-color: #7AD7F0");
-					break;
-				}
-			}
-		});
+//		table.setRowFactory(tv -> new TableRow<ExcelRecord>() {
+//			@Override
+//			protected void updateItem(ExcelRecord er, boolean empty) {
+//				super.updateItem(er, empty);
+//				if (er == null)
+//					return;
+//				switch (er.getEval()[0]) {
+//				case DCI:
+//					setStyle("-fx-background-color: #649568");
+//					break;
+//				case DII:
+//					setStyle("-fx-background-color: #EFFD5F");
+//					break;
+//				case ADII:
+//					setStyle("-fx-background-color: #FF8B3D");
+//					break;
+//				case ADCI:
+//					setStyle("-fx-background-color: #7AD7F0");
+//					break;
+//				}
+//			}
+//		});
 
 		table.getItems().setAll(FXCollections.observableArrayList(recordList));
 //		table.autosize();
@@ -75,8 +74,10 @@ public class ExcelController implements Initializable {
 		is_long_method.setCellValueFactory(new PropertyValueFactory<ExcelRecord, Integer>("is_long_method"));
 		TableColumn iPlasma = new TableColumn<>("iPlasma");
 		iPlasma.setCellValueFactory(new PropertyValueFactory<ExcelRecord, Integer>("iPlasma"));
+//		iPlasma.setCellFactory(fact -> new PlasmaCell());
 		TableColumn pmd = new TableColumn<>("PMD");
 		pmd.setCellValueFactory(new PropertyValueFactory<ExcelRecord, Integer>("pmd"));
+//		pmd.setCellFactory(fact -> new PmdCell());
 		TableColumn is_feature_envy = new TableColumn<>("is_feature_envy");
 		is_feature_envy.setCellValueFactory(new PropertyValueFactory<ExcelRecord, Integer>("is_feature_envy"));
 		table.getColumns().setAll(id, package_, class_, method, loc, cyclo, atfd, laa, is_long_method, iPlasma, pmd,

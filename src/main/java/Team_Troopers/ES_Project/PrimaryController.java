@@ -115,8 +115,11 @@ public class PrimaryController implements Initializable {
 	}
 
 	private void countTypes() {
+		for (EvalType e : EvalType.values())
+			counting.put(e, 0);
 		recordList.forEach(record -> {
-			counting.put(record.getEval(), counting.getOrDefault(record.getEval(), 0)+1);
+			counting.put(record.getEval()[0], counting.get(record.getEval()[0])+1);
+			counting.put(record.getEval()[1], counting.get(record.getEval()[1])+1);
 		});
 	}
 

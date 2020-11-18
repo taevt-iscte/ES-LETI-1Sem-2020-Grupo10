@@ -14,7 +14,8 @@ public class ExcelRecord {
 	private boolean iPlasma;
 	private boolean pmd;
 	private boolean is_feature_envy;
-	private EvalType eval;
+	private EvalType eval_pmd;
+	private EvalType eval_iPlasma;
 
 	public ExcelRecord(int id, String package_, String class_, String method, int loc, int cyclo, int atfd, double laa,
 			boolean is_long_method, boolean iPlasma, boolean pMD, boolean is_feature_envy) {
@@ -35,18 +36,30 @@ public class ExcelRecord {
 	}
 
 	private void evaluate() {
-		if (is_long_method && iPlasma && pmd)
-			eval = EvalType.DCI;
-		else if (is_long_method && !(iPlasma && pmd))
-			eval = EvalType.DII;
-		else if (!is_long_method && (iPlasma || pmd))
-			eval = EvalType.ADII;
-		else if (!is_long_method && !iPlasma && !pmd)
-			eval = EvalType.ADCI;
+		if (is_long_method) {
+			if (iPlasma)
+				eval_iPlasma = EvalType.DCI;
+			else
+				eval_iPlasma = EvalType.DII;
+			if (pmd)
+				eval_pmd = EvalType.DCI;
+			else
+				eval_pmd = EvalType.DII;
+		} else {
+			if (!iPlasma)
+				eval_iPlasma = EvalType.ADCI;
+			else
+				eval_iPlasma = EvalType.ADII;
+			if (!pmd)
+				eval_pmd = EvalType.ADCI;
+			else
+				eval_pmd = EvalType.ADII;
+		}
 	}
 
-	public EvalType getEval() {
-		return eval;
+	public EvalType[] getEval() {
+		EvalType[] evals = { eval_iPlasma, eval_pmd };
+		return evals;
 	}
 
 	public int getId() {
