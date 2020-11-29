@@ -7,7 +7,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Team_Troopers.ES_Project.PrimaryController">
    <children>
       <Button fx:id="importExcel" layoutX="55.0" layoutY="323.0" mnemonicParsing="false" onAction="#importAction" text="Importar Excel" />
-      <Button layoutX="445.0" layoutY="323.0" mnemonicParsing="false" text="Avaliar Dados" />
+      <Button fx:id="avaliarDados" layoutX="445.0" layoutY="323.0" mnemonicParsing="false" text="Avaliar Dados" />
       <ComboBox fx:id="avaliarTools" layoutX="225.0" layoutY="323.0" prefWidth="150.0" promptText="Avaliar Ferramentas" />
       <Button fx:id="submitButton" layoutX="225.0" layoutY="355.0" mnemonicParsing="false" onAction="#avaliarTool" text="Submit" />
    </children>

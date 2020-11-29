@@ -32,6 +32,7 @@ public class PrimaryController implements Initializable {
 	@FXML private Button importExcel;
 	@FXML private ComboBox<String> avaliarTools;
 	@FXML private Button submitButton;
+	@FXML private Button avaliarDadosButton;
 	private static Sheet sheet;
 
 	private Stage excelWindow;
@@ -161,7 +162,7 @@ public class PrimaryController implements Initializable {
 	}
 
 	public void graficoAction() {
-
+		
 	}
 
 	private void getRecordList() {
