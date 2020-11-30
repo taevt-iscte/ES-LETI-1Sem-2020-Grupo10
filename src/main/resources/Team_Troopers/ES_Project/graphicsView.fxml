@@ -5,15 +5,14 @@
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Team_Troopers.ES_Project.ChartController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <BarChart layoutX="2.0" layoutY="1.0" prefHeight="400.0" prefWidth="594.0" title="Avaliação de Ferramentas">
+      <BarChart fx:id="barChart" layoutX="2.0" layoutY="1.0" prefHeight="400.0" prefWidth="594.0" title="Avaliação de Ferramentas">
         <xAxis>
-          <CategoryAxis side="BOTTOM" />
+          <CategoryAxis label="Ferramentas" prefHeight="26.0" prefWidth="539.0" side="BOTTOM" fx:id="x" />
         </xAxis>
         <yAxis>
-          <NumberAxis side="LEFT" />
+          <NumberAxis fx:id="y" label="Quantidade" prefHeight="321.0" prefWidth="47.0" side="LEFT" />
         </yAxis>
       </BarChart>
    </children>
