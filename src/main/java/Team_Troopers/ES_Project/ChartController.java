@@ -20,7 +20,7 @@ public class ChartController implements Initializable {
 	private Integer adii = 0;
 	
 	@FXML
-    private BarChart<?, ?> barChart;
+    private BarChart<String, Number> barChart;
 
     @FXML
     private CategoryAxis x;
@@ -32,56 +32,26 @@ public class ChartController implements Initializable {
 		this.data = data;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		getData();
-		XYChart.Series set1 = new XYChart.Series<>();
-		set1.getData().add(new XYChart.Data("DCI", dci));
-		set1.getData().add(new XYChart.Data("DII", dii));
-		set1.getData().add(new XYChart.Data("ADCI", adci));
-		set1.getData().add(new XYChart.Data("ADII", adii));
+		getValues();
+		
+		XYChart.Series<String, Number> set1 = new XYChart.Series<>();
+		set1.setName("Resultados Positivos");
+		
+		set1.getData().add(new XYChart.Data<String, Number>("DCI", dci));
+		set1.getData().add(new XYChart.Data<String, Number>("DII", dii));
+		set1.getData().add(new XYChart.Data<String, Number>("ADCI", adci));
+		set1.getData().add(new XYChart.Data<String, Number>("ADII", adii));
 		barChart.getData().addAll(set1);
 	}
 
-	private void getData() {
-		dci = data.get(EvalType.DCI);
-		dii = data.get(EvalType.DII);
-		adci = data.get(EvalType.ADCI);
-		adii = data.get(EvalType.ADII);
+	private void getValues() {
+		dci = data.getOrDefault(EvalType.DCI, 0);
+		dii = data.getOrDefault(EvalType.DII, 0);
+		adci = data.getOrDefault(EvalType.ADCI, 0);
+		adii = data.getOrDefault(EvalType.ADII, 0);
 	}
     
-    
-	/**
-	public ChartController(HashMap<EvalType, Integer> data) {
-		this.data = data;
-	}
-	
-	public void initialize(URL location, ResourceBundle resources) {
-		recordMapReading();
-	}
-	
-	private void recordMapReading() {
-		if(data.containsKey(EvalType.DCI)) {
-			dci = data.get(EvalType.DCI);
-			System.out.println("DCI: " + dci);
-		}
-		
-		if(data.containsKey(EvalType.DII)) {
-			dii = data.get(EvalType.DII);
-			System.out.println("DII: " + dii);
-		}
-		
-		if(data.containsKey(EvalType.ADCI)) {
-			adci = data.get(EvalType.ADCI);
-			System.out.println("ADCI: " + adci);
-		}
-		
-		if(data.containsKey(EvalType.ADII)) {
-			adii = data.get(EvalType.ADII);
-			System.out.println("ADII: " + adii);
-		}
-
-	}
-	
-	**/
 }
