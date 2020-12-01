@@ -36,26 +36,26 @@ public class ExcelRecord {
 	}
 
 	private void evaluate() {
-		if (is_long_method) {
-			if (iPlasma)
-				eval_iPlasma = EvalType.DCI;
-			else
-				eval_iPlasma = EvalType.DII;
-			if (pmd)
-				eval_pmd = EvalType.DCI;
-			else
-				eval_pmd = EvalType.DII;
-		} else {
-			if (!iPlasma)
-				eval_iPlasma = EvalType.ADCI;
-			else
-				eval_iPlasma = EvalType.ADII;
-			if (!pmd)
-				eval_pmd = EvalType.ADCI;
-			else
-				eval_pmd = EvalType.ADII;
-		}
-	}
+        if (is_long_method) {
+            if (iPlasma)
+                eval_iPlasma = EvalType.PLASMA_DCI;
+            else
+                eval_iPlasma = EvalType.PLASMA_DII;
+            if (pmd)
+                eval_pmd = EvalType.PMD_DCI;
+            else
+                eval_pmd = EvalType.PMD_DII;
+        } else {
+            if (!iPlasma)
+                eval_iPlasma = EvalType.PLASMA_ADCI;
+            else
+                eval_iPlasma = EvalType.PLASMA_ADII;
+            if (!pmd)
+                eval_pmd = EvalType.PMD_ADCI;
+            else
+                eval_pmd = EvalType.PMD_ADII;
+        }
+    }
 
 	public EvalType[] getEval() {
 		EvalType[] evals = { eval_iPlasma, eval_pmd };

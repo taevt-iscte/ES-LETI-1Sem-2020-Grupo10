@@ -160,7 +160,23 @@ public class PrimaryController implements Initializable {
 	}
 
 	public void tabularAction() {
-
+		if(sheet == null) {
+			return;
+		}
+		TableController tableCtrl = new TableController(counting);
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("tableView.fxml"));
+		try {
+			loader.setController(tableCtrl);
+			Scene scene = new Scene(loader.load(), 200, 200);
+			textualWindow = new Stage();
+			textualWindow.setMaximized(false);
+			textualWindow.setTitle("Ferramenta Tabular");
+			textualWindow.setScene(scene);
+			textualWindow.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void graficoAction() {
