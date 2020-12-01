@@ -140,7 +140,7 @@ public class PrimaryController implements Initializable {
 	}
 
 	public void textualAction() {
-		if(sheet == null) {
+		if(recordList == null) {
 			return;
 		}
 		TextualController textCtrl = new TextualController(counting);

@@ -42,18 +42,18 @@ public class ExcelRecord {
 			else
 				eval_iPlasma = EvalType.PLASMA_DII;
 			if (pmd)
-				eval_pmd = EvalType.PMD_DCI;
+				eval_pmd = EvalType.PMI_DCI;
 			else
-				eval_pmd = EvalType.PMD_DII;
+				eval_pmd = EvalType.PMI_DII;
 		} else {
 			if (!iPlasma)
 				eval_iPlasma = EvalType.PLASMA_ADCI;
 			else
 				eval_iPlasma = EvalType.PLASMA_ADII;
 			if (!pmd)
-				eval_pmd = EvalType.PMD_ADCI;
+				eval_pmd = EvalType.PMI_ADCI;
 			else
-				eval_pmd = EvalType.PMD_ADII;
+				eval_pmd = EvalType.PMI_ADII;
 		}
 	}
 
