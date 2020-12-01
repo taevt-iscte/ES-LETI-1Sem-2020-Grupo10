@@ -70,7 +70,7 @@ public class App extends Application implements EventHandler<ActionEvent> {
     */	
     
     	FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("primary.fxml"));
+        loader.setLocation(getClass().getResource("userRules.fxml"));
         Parent root = loader.load();
         //scene = new Scene(loadFXML("primary"), 640, 480);
     
