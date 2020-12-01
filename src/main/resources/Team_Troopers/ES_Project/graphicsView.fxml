@@ -12,7 +12,7 @@
           <CategoryAxis label="Ferramentas" prefHeight="26.0" prefWidth="539.0" side="BOTTOM" fx:id="x" />
         </xAxis>
         <yAxis>
-          <NumberAxis fx:id="y" label="Quantidade" prefHeight="321.0" prefWidth="47.0" side="LEFT" />
+          <NumberAxis fx:id="y" prefHeight="321.0" prefWidth="47.0" side="LEFT" />
         </yAxis>
       </BarChart>
    </center>

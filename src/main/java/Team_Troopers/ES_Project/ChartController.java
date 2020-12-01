@@ -14,10 +14,15 @@ import javafx.scene.chart.XYChart;
 public class ChartController implements Initializable {
 	
 	private HashMap<EvalType, Integer> data;
-	private Integer dci = 0;
-	private Integer dii = 0;
-	private Integer adci = 0;
-	private Integer adii = 0;
+	private Integer plasma_dci = 0;
+	private Integer plasma_dii = 0;
+	private Integer plasma_adci = 0;
+	private Integer plasma_adii = 0;
+	
+	private Integer pmd_dci = 0;
+	private Integer pmd_dii = 0;
+	private Integer pmd_adci = 0;
+	private Integer pmd_adii = 0;
 	
 	@FXML
     private BarChart<String, Number> barChart;
@@ -37,21 +42,35 @@ public class ChartController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		getValues();
 		
-		XYChart.Series<String, Number> set1 = new XYChart.Series<>();
-		set1.setName("Resultados Positivos");
+		XYChart.Series<String, Number> plasma_set = new XYChart.Series<String, Number>();
+		plasma_set.setName("iPlasma");
 		
-		set1.getData().add(new XYChart.Data<String, Number>("DCI", dci));
-		set1.getData().add(new XYChart.Data<String, Number>("DII", dii));
-		set1.getData().add(new XYChart.Data<String, Number>("ADCI", adci));
-		set1.getData().add(new XYChart.Data<String, Number>("ADII", adii));
-		barChart.getData().addAll(set1);
+		plasma_set.getData().add(new XYChart.Data<String, Number>("DCI", plasma_dci));
+		plasma_set.getData().add(new XYChart.Data<String, Number>("DII", plasma_dii));
+		plasma_set.getData().add(new XYChart.Data<String, Number>("ADCI", plasma_adci));
+		plasma_set.getData().add(new XYChart.Data<String, Number>("ADII", plasma_adii));
+		
+		XYChart.Series<String, Number> pmd_set = new XYChart.Series<String, Number>();
+		pmd_set.setName("PMD");
+		
+		pmd_set.getData().add(new XYChart.Data<String, Number>("DCI", pmd_dci));
+		pmd_set.getData().add(new XYChart.Data<String, Number>("DII", pmd_dii));
+		pmd_set.getData().add(new XYChart.Data<String, Number>("ADCI", pmd_adci));
+		pmd_set.getData().add(new XYChart.Data<String, Number>("ADII", pmd_adii));
+		
+		barChart.getData().addAll(plasma_set, pmd_set);
 	}
 
 	private void getValues() {
-		dci = data.getOrDefault(EvalType.DCI, 0);
-		dii = data.getOrDefault(EvalType.DII, 0);
-		adci = data.getOrDefault(EvalType.ADCI, 0);
-		adii = data.getOrDefault(EvalType.ADII, 0);
+		plasma_dci = data.getOrDefault(EvalType.PLASMA_DCI, 0);
+		plasma_dii = data.getOrDefault(EvalType.PLASMA_DII, 0);
+		plasma_adci = data.getOrDefault(EvalType.PLASMA_ADCI, 0);
+		plasma_adii = data.getOrDefault(EvalType.PLASMA_ADII, 0);
+		
+		pmd_dci = data.getOrDefault(EvalType.PMD_DCI, 0);
+		pmd_dii = data.getOrDefault(EvalType.PMD_DII, 0);
+		pmd_adci = data.getOrDefault(EvalType.PMD_ADCI, 0);
+		pmd_adii = data.getOrDefault(EvalType.PMD_ADII, 0);
 	}
     
 }

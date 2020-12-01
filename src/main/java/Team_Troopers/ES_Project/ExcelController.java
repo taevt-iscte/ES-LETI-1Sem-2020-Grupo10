@@ -25,7 +25,7 @@ public class ExcelController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		addColumns();
-
+/**
 		table.setRowFactory(tv -> new TableRow<ExcelRecord>() {
 			@Override
 			protected void updateItem(ExcelRecord er, boolean empty) {
@@ -48,7 +48,7 @@ public class ExcelController implements Initializable {
 				}
 			}
 		});
-
+**/
 		table.getItems().setAll(FXCollections.observableArrayList(recordList));
 //		table.autosize();
 	}
