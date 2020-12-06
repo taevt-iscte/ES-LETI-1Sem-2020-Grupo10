@@ -8,7 +8,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Team_Troopers.ES_Project.PrimaryController">
    <children>
       <Button fx:id="importExcel" layoutX="14.0" layoutY="360.0" mnemonicParsing="false" onAction="#importAction" text="Importar Excel" />
-      <Button fx:id="avaliarDados" layoutX="269.0" layoutY="326.0" mnemonicParsing="false" text="Regras Personalizadas" />
+      <Button fx:id="avaliarDados" layoutX="269.0" layoutY="326.0" mnemonicParsing="false" onAction="#userRulesAction" text="Regras Personalizadas" />
       <ComboBox fx:id="avaliarTools" layoutX="217.0" layoutY="359.0" prefHeight="26.0" prefWidth="186.0" promptText="Apresentação da Avaliação:" />
       <Button fx:id="submitButton" layoutX="532.0" layoutY="360.0" mnemonicParsing="false" onAction="#avaliarTool" text="Submit" />
       <CheckBox fx:id="use_rules" layoutX="232.0" layoutY="330.0" mnemonicParsing="false" />
