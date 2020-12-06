@@ -3,8 +3,17 @@
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<<<<<<< HEAD
+<?import javafx.scene.text.Font?>
+=======
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
+>>>>>>> refs/remotes/origin/Ferramenta_Grafica
+
+<<<<<<< HEAD
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label fx:id="dci_Label" layoutX="27.0" layoutY="44.0" text="DCI_LABEL">
@@ -30,3 +39,105 @@
       <PieChart fx:id="pieChart" layoutX="272.0" layoutY="23.0" />
    </children>
 </AnchorPane>
+=======
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e2eaf2" height="368.0" layoutX="17.0" layoutY="16.0" stroke="BLACK" strokeType="INSIDE" width="561.0" />
+            <Label layoutX="267.0" layoutY="24.0" text="iPlasma">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="24.0" layoutY="59.0" text="Defeitos Corretamente Identificados (DCI): ">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="25.0" layoutY="88.0" text="Defeitos Incorretamente Identificados (DII):">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="24.0" layoutY="118.0" text="Ausência de Defeitos Corretamente Identificados (ADCI):">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="25.0" layoutY="147.0" text="Ausência de Defeitos Incorretamente Identificados (ADII):">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Line endX="460.0" endY="-1.52587890625E-5" layoutX="117.0" layoutY="199.0" startX="-100.0" startY="-1.52587890625E-5" />
+            <Label layoutX="281.0" layoutY="206.0" text="PMI">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="25.0" layoutY="245.0" text="Defeitos Corretamente Identificados (DCI):">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="25.0" layoutY="274.0" text="Defeitos Incorretamente Identificados (DII):">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="24.0" layoutY="305.0" text="Ausência de Defeitos Corretamente Identificados (ADCI):">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="25.0" layoutY="336.0" text="Ausência de Defeitos Incorretamente Identificados (ADII):">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="plasma_dci" layoutX="270.0" layoutY="59.0" text="0" textFill="#ec2020">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="plasma_dii" layoutX="274.0" layoutY="88.0" text="0" textFill="#ec2020">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="plasma_adci" layoutX="349.0" layoutY="118.0" text="0" textFill="#ec2020">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="plasma_adii" layoutX="356.0" layoutY="147.0" text="0" textFill="#ec2020">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="pmi_dci" layoutX="270.0" layoutY="245.0" text="0" textFill="#ec2020">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="pmi_dii" layoutX="274.0" layoutY="274.0" text="0" textFill="#ec2020">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="pmi_adci" layoutX="352.0" layoutY="305.0" text="0" textFill="#ec2020">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="pmi_adii" layoutX="356.0" layoutY="336.0" text="0" textFill="#ec2020">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
+>>>>>>> refs/remotes/origin/Ferramenta_Grafica

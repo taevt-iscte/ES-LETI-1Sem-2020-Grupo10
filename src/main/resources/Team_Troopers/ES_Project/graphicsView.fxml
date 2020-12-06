@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <BarChart fx:id="barChart" layoutX="2.0" layoutY="1.0" prefHeight="400.0" prefWidth="594.0" title="Avaliação de Ferramentas">
+        <xAxis>
+          <CategoryAxis label="Ferramentas" prefHeight="26.0" prefWidth="539.0" side="BOTTOM" fx:id="x" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="y" prefHeight="321.0" prefWidth="47.0" side="LEFT" />
+        </yAxis>
+      </BarChart>
+   </center>
+</BorderPane>
