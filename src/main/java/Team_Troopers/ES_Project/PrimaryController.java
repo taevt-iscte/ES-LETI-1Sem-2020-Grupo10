@@ -13,6 +13,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -21,6 +22,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
@@ -33,6 +35,7 @@ public class PrimaryController implements Initializable {
 	@FXML private ComboBox<String> avaliarTools;
 	@FXML private Button submitButton;
 	@FXML private Button avaliarDadosButton;
+	@FXML private CheckBox use_rules;
 	private static Sheet sheet;
 
 	private Stage excelWindow;
@@ -46,6 +49,7 @@ public class PrimaryController implements Initializable {
 		avaliarTools.getItems().addAll("Textual", "Tabular", "Gráfica");
 		recordList = new ArrayList<ExcelRecord>();
 		counting = new HashMap<EvalType, Integer>();
+		use_rules.selectedProperty().addListener(this::edit_count);;
 	}
 
 	public void closeMainWindow(WindowEvent e) {
@@ -59,6 +63,22 @@ public class PrimaryController implements Initializable {
 			excelWindow.close();
 		else
 			e.consume();
+	}
+	
+	private void edit_count(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+		System.out.println(newValue ? "Selected" : "Not Selected");
+		if (newValue) {
+			counting.remove(EvalType.USER_DCI);
+			counting.remove(EvalType.USER_DII);
+			counting.remove(EvalType.USER_ADCI);
+			counting.remove(EvalType.USER_ADII);
+		} else {
+			count_user();
+		}
+	}
+	
+	private void count_user() {
+		
 	}
 
 	public void importAction() {
