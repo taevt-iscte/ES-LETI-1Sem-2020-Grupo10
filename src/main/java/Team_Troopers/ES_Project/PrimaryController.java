@@ -93,8 +93,8 @@ public class PrimaryController implements Initializable {
 			for (String rule : rules) {
 				results.add(applyRule(rule.split(" "), r));
 			}
-			counting.put(r.userEval(calcPass(results, op)),
-					counting.getOrDefault(r.userEval(calcPass(results, op)), 0) + 1);
+			boolean pass = calcPass(results, op);
+			counting.put(r.userEval(pass), counting.getOrDefault(r.userEval(pass), 0) + 1);
 		}
 		System.out.println(rules);
 	}
@@ -213,6 +213,8 @@ public class PrimaryController implements Initializable {
 	private void countTypes() {
 		for (EvalType e : EvalType.values())
 			counting.put(e, 0);
+		counting.remove(EvalType.USER_DCI); counting.remove(EvalType.USER_DII);
+		counting.remove(EvalType.USER_ADCI); counting.remove(EvalType.USER_ADII);
 		recordList.forEach(record -> {
 			counting.put(record.getEval()[0], counting.get(record.getEval()[0])+1);
 			counting.put(record.getEval()[1], counting.get(record.getEval()[1])+1);
