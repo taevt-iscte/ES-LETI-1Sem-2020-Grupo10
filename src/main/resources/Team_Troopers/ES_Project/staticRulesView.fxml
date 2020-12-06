@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="638.0" prefWidth="991.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Team_Troopers.ES_Project.StaticRulesController">
+   <children>
+      <Label layoutX="45.0" layoutY="75.0" text="Long Method">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="45.0" layoutY="128.0" prefHeight="25.0" prefWidth="161.0" text="LINES OF CODE (LOC)">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="379.0" layoutY="122.0" text="&gt;">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <TextField fx:id="loc_field" layoutX="427.0" layoutY="127.0" prefHeight="25.0" prefWidth="46.0" />
+      <Label layoutX="39.0" layoutY="182.0" text="CYCLOMATIC COMPLEXITY (CYCLO)">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="379.0" layoutY="176.0" text="&gt;">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <TextField fx:id="cyclo_field" layoutX="427.0" layoutY="181.0" prefHeight="25.0" prefWidth="46.0" />
+      <Label layoutX="39.0" layoutY="319.0" text="Feature Envy">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="39.0" layoutY="374.0" prefHeight="25.0" prefWidth="254.0" text="ACCESS TO FOREIGN DATA (ATFD)">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="379.0" layoutY="369.0" text="&gt;">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <TextField fx:id="atfd_field" layoutX="427.0" layoutY="374.0" prefHeight="25.0" prefWidth="46.0" />
+      <Label layoutX="36.0" layoutY="420.0" text="LOCALITY OF ATTRIBUTE ACCESSES (LAA)">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="379.0" layoutY="415.0" text="&lt;">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <TextField fx:id="laa_field" layoutX="427.0" layoutY="421.0" prefHeight="25.0" prefWidth="46.0" />
+      <Label layoutX="33.0" layoutY="469.0" text="NUMBER OF FINAL ATTRIBUTES (NOFA)">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="379.0" layoutY="464.0" text="&gt;">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <TextField fx:id="nofa_field" layoutX="427.0" layoutY="469.0" prefHeight="25.0" prefWidth="46.0" />
+      <Label layoutX="531.0" layoutY="473.0" text="[CAMPO OPCIONAL]" />
+      <CheckBox layoutX="505.0" layoutY="473.0" mnemonicParsing="false" />
+      <Button layoutX="36.0" layoutY="238.0" mnemonicParsing="false" text="Submeter" />
+      <Button layoutX="36.0" layoutY="521.0" mnemonicParsing="false" text="Submeter" />
+   </children>
+</AnchorPane>

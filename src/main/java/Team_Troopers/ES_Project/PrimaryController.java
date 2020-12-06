@@ -183,6 +183,7 @@ public class PrimaryController implements Initializable {
 	public void graficoAction() {
 		
 	}
+	
 
 	private void getRecordList() {
 		for (int row = 1; row < sheet.getLastRowNum(); row++) {
