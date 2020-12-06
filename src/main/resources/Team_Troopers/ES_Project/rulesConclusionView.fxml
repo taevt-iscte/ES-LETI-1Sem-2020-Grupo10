@@ -27,5 +27,6 @@
       <ComboBox fx:id="combo_Metric_20" prefWidth="150.0" visible="false" GridPane.rowIndex="2" />
       <ComboBox fx:id="combo_Logic_21" prefWidth="150.0" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
       <ComboBox fx:id="combo_Metric_22" prefWidth="150.0" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+      <Button fx:id="submitButton" mnemonicParsing="false" onAction="#submitButtonClicked" prefHeight="55.0" prefWidth="150.0" text="Submit" GridPane.columnIndex="3" GridPane.rowIndex="2" />
    </children>
 </GridPane>

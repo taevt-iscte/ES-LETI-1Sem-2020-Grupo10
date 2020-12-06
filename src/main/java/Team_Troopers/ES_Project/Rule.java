@@ -5,17 +5,25 @@ import java.util.ArrayList;
 public class Rule {
 	
 	private ArrayList<String> rule = new ArrayList<>();
-	private int numberRules;
+	private int numberMetrics;
 	
 	public Rule(ArrayList<String> rule) {
 		this.rule = rule;
-		if(rule.size() == 3) {
-			numberRules = 1;
+		if(rule.size() % 2 == 0) {
+			rule.remove(rule.size()-1);
 		}
-		else {
-			numberRules = 2;
-		}
+		numberMetrics = rule.size()/2 +1;
 	}
+
+	public int getNumberMetrics() {
+		return numberMetrics;
+	}
+
+	public ArrayList<String> getRule() {
+		return rule;
+	}
+	
+	
 	
 	
 

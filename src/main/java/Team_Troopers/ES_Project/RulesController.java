@@ -21,7 +21,9 @@ public class RulesController implements Initializable {
 	@FXML ComboBox<String> combo_Metric_22;
 	
 	@FXML Button plusButton;
+	@FXML Button submitButton;
 	
+	private ArrayList<ComboBox> combobox_arr = new ArrayList<>();
 	private ArrayList<RuleCondition> list_rl;
 	
 	
@@ -29,6 +31,13 @@ public class RulesController implements Initializable {
 		
 		this.list_rl = list_rl2;
 		
+		combobox_arr.add(combo_Metric_00);
+		combobox_arr.add(combo_Logic_01);
+		combobox_arr.add(combo_Metric_02);
+		/*combobox_arr.add(combo_Logic_11);
+		combobox_arr.add(combo_Metric_20);
+		combobox_arr.add(combo_Logic_21);
+		combobox_arr.add(combo_Metric_22);*/
 		
 	}
 
@@ -36,10 +45,23 @@ public class RulesController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
-		combo_Logic_01.getItems().addAll("AND", "OR");
-		combo_Logic_11.getItems().addAll("AND", "OR");
-		combo_Logic_21.getItems().addAll("AND", "OR");
+		combo_Logic_01.getItems().addAll("EMPTY", "AND", "OR");
+		combo_Logic_11.getItems().addAll("EMPTY", "AND", "OR");
+		combo_Logic_21.getItems().addAll("EMPTY", "AND", "OR");
 		
+		combo_Logic_01.getSelectionModel().selectFirst();
+		combo_Logic_11.getSelectionModel().selectFirst();
+		combo_Logic_21.getSelectionModel().selectFirst();
+		
+		combo_Metric_00.getItems().add("EMPTY");
+		combo_Metric_02.getItems().add("EMPTY");
+		combo_Metric_20.getItems().add("EMPTY");
+		combo_Metric_22.getItems().add("EMPTY");
+		
+		combo_Metric_00.getSelectionModel().selectFirst();
+		combo_Metric_02.getSelectionModel().selectFirst();
+		combo_Metric_20.getSelectionModel().selectFirst();
+		combo_Metric_22.getSelectionModel().selectFirst();
 		
 		for(int i=0; i < list_rl.size(); i++) {
 			String metric_name = list_rl.get(i).getMetric();
@@ -64,7 +86,46 @@ public class RulesController implements Initializable {
 		combo_Metric_20.setVisible(true);
 		combo_Logic_21.setVisible(true);
 		combo_Metric_22.setVisible(true);
+	}
+	
+	public void submitButtonClicked() {
 		
+		ArrayList<String> data = new ArrayList<>();
+		data.add(combo_Metric_00.getValue());
+		
+		if(combo_Logic_01.getValue().equals("EMPTY") /*|| combo_Logic_01.getSelectionModel().isEmpty()*/) {
+			System.out.println("STOP");
+			test(data);
+			return;
+		}
+		else {
+			data.add(combo_Logic_01.getValue());
+			data.add(combo_Metric_02.getValue());
+			if(combo_Logic_11.getValue().equals("EMPTY") /* || combo_Logic_11.getSelectionModel().isEmpty() */) {
+				test(data);
+				return;
+			}
+			else {
+				data.add(combo_Logic_11.getValue());
+				data.add(combo_Metric_02.getValue());
+				if(combo_Logic_21.getValue().equals("EMPTY") /*|| combo_Logic_21.getSelectionModel().isEmpty() */) {
+					test(data);
+					return;
+				}
+				else {
+					data.add(combo_Logic_21.getValue());
+					data.add(combo_Metric_22.getValue());
+				}
+			}
+		}
+		test(data);
+		
+	}
+	
+	public void test(ArrayList<String> data) {
+		for(int i=0; i < data.size(); i++) {
+			System.out.println(data.get(i));
+		}
 		
 	}
 	
