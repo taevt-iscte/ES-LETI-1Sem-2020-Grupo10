@@ -76,6 +76,7 @@ public class App extends Application implements EventHandler<ActionEvent> {
     
     	Scene scene = new Scene(root);
         stage.setScene(scene);
+        stage.setTitle("Exceltify");
         stage.show();
         
     }
