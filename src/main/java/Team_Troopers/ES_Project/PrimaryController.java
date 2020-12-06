@@ -116,8 +116,11 @@ public class PrimaryController implements Initializable {
 	}
 
 	private void countTypes() {
+		for (EvalType e : EvalType.values())
+			counting.put(e, 0);
 		recordList.forEach(record -> {
-			counting.put(record.getEval(), counting.getOrDefault(record.getEval(), 0)+1);
+			counting.put(record.getEval()[0], counting.get(record.getEval()[0])+1);
+			counting.put(record.getEval()[1], counting.get(record.getEval()[1])+1);
 		});
 	}
 
@@ -158,7 +161,23 @@ public class PrimaryController implements Initializable {
 	}
 
 	public void tabularAction() {
-
+		if(sheet == null) {
+			return;
+		}
+		TableController tableCtrl = new TableController(counting);
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("tableView.fxml"));
+		try {
+			loader.setController(tableCtrl);
+			Scene scene = new Scene(loader.load(), 200, 200);
+			textualWindow = new Stage();
+			textualWindow.setMaximized(false);
+			textualWindow.setTitle("Ferramenta Tabular");
+			textualWindow.setScene(scene);
+			textualWindow.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void graficoAction() {
