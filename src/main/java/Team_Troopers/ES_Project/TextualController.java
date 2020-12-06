@@ -33,10 +33,10 @@ public class TextualController implements Initializable {
 		plasma_adci.setText((recordMap.getOrDefault(EvalType.PLASMA_ADCI, 0)).toString());
 		plasma_adii.setText((recordMap.getOrDefault(EvalType.PLASMA_ADII, 0)).toString());
 		
-		pmi_dci.setText((recordMap.getOrDefault(EvalType.PMI_DCI, 0)).toString());
-		pmi_dii.setText((recordMap.getOrDefault(EvalType.PMI_DII, 0)).toString());
-		pmi_adci.setText((recordMap.getOrDefault(EvalType.PMI_ADCI, 0)).toString());
-		pmi_adii.setText((recordMap.getOrDefault(EvalType.PMI_ADII, 0)).toString());
+		pmi_dci.setText((recordMap.getOrDefault(EvalType.PMD_DCI, 0)).toString());
+		pmi_dii.setText((recordMap.getOrDefault(EvalType.PMD_DII, 0)).toString());
+		pmi_adci.setText((recordMap.getOrDefault(EvalType.PMD_ADCI, 0)).toString());
+		pmi_adii.setText((recordMap.getOrDefault(EvalType.PMD_ADII, 0)).toString());
 		
 	}
 }
