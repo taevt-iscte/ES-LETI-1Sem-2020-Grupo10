@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.shape.Line;
 
 public class TextualController implements Initializable {
 	
@@ -19,6 +20,12 @@ public class TextualController implements Initializable {
 	@FXML private Label pmi_dii;
 	@FXML private Label pmi_adci;
 	@FXML private Label pmi_adii;
+	@FXML private Label user_label;
+	@FXML private Label user_dci;
+	@FXML private Label user_dii;
+	@FXML private Label user_adci;
+	@FXML private Label user_adii;
+	@FXML private Line user_seperator;
 	
 	public TextualController(HashMap<EvalType, Integer> recordMap) {
 		this.recordMap = recordMap;
@@ -36,6 +43,26 @@ public class TextualController implements Initializable {
 		pmi_dii.setText((recordMap.getOrDefault(EvalType.PMD_DII, 0)).toString());
 		pmi_adci.setText((recordMap.getOrDefault(EvalType.PMD_ADCI, 0)).toString());
 		pmi_adii.setText((recordMap.getOrDefault(EvalType.PMD_ADII, 0)).toString());
+		
+		EvalType[] list = {EvalType.USER_DCI, EvalType.USER_DII, EvalType.USER_ADCI, EvalType.USER_ADII};
+		boolean found = false;
+		for (EvalType e : list) {
+			found = found || recordMap.containsKey(e);
+		}
+		
+		if (found) {
+			user_dci.setText(recordMap.getOrDefault(EvalType.USER_DCI, 0).toString());
+			user_dii.setText(recordMap.getOrDefault(EvalType.USER_DII, 0).toString());
+			user_adci.setText(recordMap.getOrDefault(EvalType.USER_ADCI, 0).toString());
+			user_adii.setText(recordMap.getOrDefault(EvalType.USER_ADII, 0).toString());
+		} else {
+			user_label.setVisible(false);
+			user_dci.setVisible(false);
+			user_dii.setVisible(false);
+			user_adci.setVisible(false);
+			user_adii.setVisible(false);
+			user_seperator.setVisible(false);
+		}
 		
 	}
 }

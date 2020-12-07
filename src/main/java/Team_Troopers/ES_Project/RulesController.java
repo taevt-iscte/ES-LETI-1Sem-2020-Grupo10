@@ -95,34 +95,20 @@ public class RulesController implements Initializable {
 		data.clear();
 		data.add(combo_Metric_00.getValue());
 		
-		if(combo_Logic_01.getValue().equals("EMPTY") /*|| combo_Logic_01.getSelectionModel().isEmpty()*/) {
-			System.out.println("STOP");
-			return;
-		}
-		else {
+		if(!combo_Logic_01.getValue().equals("EMPTY") /*|| combo_Logic_01.getSelectionModel().isEmpty()*/) {
 			data.add(combo_Logic_01.getValue());
 			data.add(combo_Metric_02.getValue());
-			if(combo_Logic_11.getValue().equals("EMPTY") /* || combo_Logic_11.getSelectionModel().isEmpty() */) {
-				combo_Metric_00.getScene().getWindow().hide();
-				System.out.println("I'm supposed to hide now");
-				return;
-			}
-			else {
+			if(!combo_Logic_11.getValue().equals("EMPTY") /* || combo_Logic_11.getSelectionModel().isEmpty() */) {
 				data.add(combo_Logic_11.getValue());
 				data.add(combo_Metric_02.getValue());
-				if(combo_Logic_21.getValue().equals("EMPTY") /*|| combo_Logic_21.getSelectionModel().isEmpty() */) {
-					combo_Metric_00.getScene().getWindow().hide();
-					System.out.println("I'm supposed to hide now");
-					return;
-				}
-				else {
+				if(!combo_Logic_21.getValue().equals("EMPTY") /*|| combo_Logic_21.getSelectionModel().isEmpty() */) {
 					data.add(combo_Logic_21.getValue());
 					data.add(combo_Metric_22.getValue());
-					combo_Metric_00.getScene().getWindow().hide();
-					System.out.println("I'm supposed to hide now");
 				}
 			}
 		}
+		combo_Metric_00.getScene().getWindow().hide();
+		System.out.println("I'm supposed to hide now");
 
 	}
 	

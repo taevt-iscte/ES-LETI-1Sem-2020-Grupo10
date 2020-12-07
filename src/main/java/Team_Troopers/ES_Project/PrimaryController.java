@@ -44,7 +44,7 @@ public class PrimaryController implements Initializable {
 	private Stage userWindow;
 	private ArrayList<ExcelRecord> recordList;
 	private HashMap<EvalType, Integer> counting;
-	private ArrayList<String> userArray;
+	private ArrayList<String> userArray = new ArrayList<>();
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
@@ -80,6 +80,18 @@ public class PrimaryController implements Initializable {
 	}
 
 	private void count_user() {
+		EvalType[] list = {EvalType.USER_DCI, EvalType.USER_DII, EvalType.USER_ADCI, EvalType.USER_ADII};
+		boolean found = false;
+		for (EvalType e : list) {
+			found = found || counting.containsKey(e);
+		}
+
+		if (found) {
+			counting.remove(EvalType.USER_DCI);
+			counting.remove(EvalType.USER_DII);
+			counting.remove(EvalType.USER_ADCI);
+			counting.remove(EvalType.USER_ADII);
+		}
 		ArrayList<String> rules = new ArrayList<>();
 		ArrayList<String> op = new ArrayList<>();
 		for (int i = 0; i < userArray.size(); i++) {
@@ -88,6 +100,8 @@ public class PrimaryController implements Initializable {
 			else
 				op.add(userArray.get(i)); 
 		}
+		if (rules.isEmpty())
+			return;
 		for (ExcelRecord r : recordList) {
 			ArrayList<Boolean> results = new ArrayList<>();
 			for (String rule : rules) {
@@ -188,6 +202,8 @@ public class PrimaryController implements Initializable {
 		}
 		getRecordList();
 		countTypes();
+		if (use_rules.isSelected())
+			count_user();
 		ExcelController exCtrl = new ExcelController(recordList);
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("excelView.fxml"));
@@ -278,11 +294,11 @@ public class PrimaryController implements Initializable {
 	}
 
 	public void graficoAction() {
-		
+
 		if(recordList == null) {
 			return;
 		}
-		
+
 		ChartController graphcontrol = new ChartController(counting);
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("graphicsView.fxml"));

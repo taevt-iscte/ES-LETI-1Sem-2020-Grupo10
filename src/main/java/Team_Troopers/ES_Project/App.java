@@ -69,12 +69,13 @@ public class App extends Application implements EventHandler<ActionEvent> {
     	borderPane.setBottom(bottomMenu);
     */	
     
-    	FXMLLoader loader = new FXMLLoader();
+    	FXMLLoader loader = new FXMLLoader();	
         loader.setLocation(getClass().getResource("primary.fxml"));
         Parent root = loader.load();
         //scene = new Scene(loadFXML("primary"), 640, 480);
     
     	Scene scene = new Scene(root);
+    	stage.setTitle("Exceltify");
         stage.setScene(scene);
         stage.setTitle("Exceltify");
         stage.show();
