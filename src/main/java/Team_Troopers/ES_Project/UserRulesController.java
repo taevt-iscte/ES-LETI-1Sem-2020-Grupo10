@@ -92,14 +92,18 @@ public class UserRulesController implements Initializable {
 			rulesWindow.setMaximized(false);
 			rulesWindow.setTitle("Emparelhamento de Condições");
 			rulesWindow.setScene(scene);
-			rulesWindow.show();
+			rulesWindow.showAndWait();
+			addButton.getScene().getWindow().hide();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public ArrayList<String> getArray() { 
-		return textCtrl.getData();
+	public ArrayList<String> getArray() {
+		if (textCtrl == null)
+			return new ArrayList<String>();
+		else
+			return textCtrl.getData();
 	}
 
 }
