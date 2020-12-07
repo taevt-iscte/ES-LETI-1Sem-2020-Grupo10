@@ -35,6 +35,7 @@ public class UserRulesController implements Initializable {
 	@FXML Button addButton;
 	@FXML Button deleteButton;
 	@FXML HBox hBox = new HBox();
+	private RulesController textCtrl;
 	
 	private Stage rulesWindow;
 	
@@ -81,7 +82,7 @@ public class UserRulesController implements Initializable {
 	
 	public void nextStepAction() {
 		ArrayList<RuleCondition> list_rl = new ArrayList<RuleCondition>(table.getItems());
-		RulesController textCtrl = new RulesController(list_rl);
+		textCtrl = new RulesController(list_rl);
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("rulesConclusionView.fxml"));
 		try {
@@ -97,5 +98,8 @@ public class UserRulesController implements Initializable {
 		}
 	}
 	
+	public ArrayList<String> getArray() { 
+		return textCtrl.getData();
+	}
 
 }

@@ -22,29 +22,38 @@ public class TableController implements Initializable {
 		TableController.count = count;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		TableColumn<TableEntry, EvalType> type = new TableColumn<>("Type");
 		TableColumn<TableEntry, Integer> pmd_count = new TableColumn<>("PMD");
 		TableColumn<TableEntry, Integer> plasma_count = new TableColumn<>("iPlasma");
+		TableColumn<TableEntry, Integer> user_count = new TableColumn<>("Custom Rules");
 		
 		type.setCellValueFactory(new PropertyValueFactory<TableEntry, EvalType>("type"));
 		pmd_count.setCellValueFactory(new PropertyValueFactory<TableEntry, Integer>("pmd_count"));
 		plasma_count.setCellValueFactory(new PropertyValueFactory<TableEntry, Integer>("iPlasma_count"));
+		user_count.setCellValueFactory(new PropertyValueFactory<TableEntry, Integer>("user_count"));
 		
 		table.getColumns().setAll(type, pmd_count, plasma_count);
+		EvalType[] list = {EvalType.USER_DCI, EvalType.USER_DII, EvalType.USER_ADCI, EvalType.USER_ADII};
+		boolean found = false;
+		for (EvalType e : list) {
+			found = found || count.containsKey(e);
+		}
+		
+		if (found)
+			table.getColumns().add(user_count);
 		
 		addItems();
-		
-		table.autosize();
 		
 	}
 
 	private void addItems() {
-		TableEntry dci = new TableEntry("DCI", count.get(EvalType.PMD_DCI), count.get(EvalType.PLASMA_DCI));
-		TableEntry dii = new TableEntry("DII", count.get(EvalType.PMD_DII), count.get(EvalType.PLASMA_DII));
-		TableEntry adci = new TableEntry("ADCI", count.get(EvalType.PMD_ADCI), count.get(EvalType.PLASMA_ADCI));
-		TableEntry adii = new TableEntry("ADII", count.get(EvalType.PMD_ADII), count.get(EvalType.PLASMA_ADII));
+		TableEntry dci = new TableEntry("DCI", count.get(EvalType.PMD_DCI), count.get(EvalType.PLASMA_DCI), count.getOrDefault(EvalType.USER_DCI, 0));
+		TableEntry dii = new TableEntry("DII", count.get(EvalType.PMD_DII), count.get(EvalType.PLASMA_DII), count.getOrDefault(EvalType.USER_DII, 0));
+		TableEntry adci = new TableEntry("ADCI", count.get(EvalType.PMD_ADCI), count.get(EvalType.PLASMA_ADCI), count.getOrDefault(EvalType.USER_ADCI, 0));
+		TableEntry adii = new TableEntry("ADII", count.get(EvalType.PMD_ADII), count.get(EvalType.PLASMA_ADII), count.getOrDefault(EvalType.USER_ADII, 0));
 		ObservableList<TableEntry> list = FXCollections.observableArrayList(dci, dii, adci, adii);
 		table.getItems().setAll(list);
 	}

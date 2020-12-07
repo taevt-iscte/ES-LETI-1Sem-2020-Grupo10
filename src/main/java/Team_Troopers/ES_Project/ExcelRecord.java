@@ -62,6 +62,21 @@ public class ExcelRecord {
 		return evals;
 	}
 
+	public EvalType userEval(boolean userThink) {
+		if (is_long_method) {
+			if (userThink)
+				return EvalType.USER_DCI;
+			else
+				return EvalType.USER_DII;
+		}
+		else {
+			if (!userThink)
+				return EvalType.USER_ADCI;
+			else
+				return EvalType.USER_ADII;
+		}
+	}
+	
 	public int getId() {
 		return id;
 	}

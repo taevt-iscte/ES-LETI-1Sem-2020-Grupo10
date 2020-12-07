@@ -27,7 +27,6 @@ public class TextualController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-
 		plasma_dci.setText((recordMap.getOrDefault(EvalType.PLASMA_DCI, 0)).toString());
 		plasma_dii.setText((recordMap.getOrDefault(EvalType.PLASMA_DII, 0)).toString());
 		plasma_adci.setText((recordMap.getOrDefault(EvalType.PLASMA_ADCI, 0)).toString());

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -25,6 +26,7 @@ public class RulesController implements Initializable {
 	
 	private ArrayList<ComboBox> combobox_arr = new ArrayList<>();
 	private ArrayList<RuleCondition> list_rl;
+	private ArrayList<String> data = new ArrayList<>();
 	
 	
 	public RulesController(ArrayList<RuleCondition> list_rl2) {
@@ -90,43 +92,42 @@ public class RulesController implements Initializable {
 	
 	public void submitButtonClicked() {
 		
-		ArrayList<String> data = new ArrayList<>();
+		data.clear();
 		data.add(combo_Metric_00.getValue());
 		
 		if(combo_Logic_01.getValue().equals("EMPTY") /*|| combo_Logic_01.getSelectionModel().isEmpty()*/) {
 			System.out.println("STOP");
-			test(data);
 			return;
 		}
 		else {
 			data.add(combo_Logic_01.getValue());
 			data.add(combo_Metric_02.getValue());
 			if(combo_Logic_11.getValue().equals("EMPTY") /* || combo_Logic_11.getSelectionModel().isEmpty() */) {
-				test(data);
+				combo_Metric_00.getScene().getWindow().hide();
+				System.out.println("I'm supposed to hide now");
 				return;
 			}
 			else {
 				data.add(combo_Logic_11.getValue());
 				data.add(combo_Metric_02.getValue());
 				if(combo_Logic_21.getValue().equals("EMPTY") /*|| combo_Logic_21.getSelectionModel().isEmpty() */) {
-					test(data);
+					combo_Metric_00.getScene().getWindow().hide();
+					System.out.println("I'm supposed to hide now");
 					return;
 				}
 				else {
 					data.add(combo_Logic_21.getValue());
 					data.add(combo_Metric_22.getValue());
+					combo_Metric_00.getScene().getWindow().hide();
+					System.out.println("I'm supposed to hide now");
 				}
 			}
 		}
-		test(data);
-		
+
 	}
 	
-	public void test(ArrayList<String> data) {
-		for(int i=0; i < data.size(); i++) {
-			System.out.println(data.get(i));
-		}
-		
+	public ArrayList<String> getData() {
+		return data;		
 	}
 	
 	
