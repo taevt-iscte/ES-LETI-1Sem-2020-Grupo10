@@ -249,7 +249,7 @@ public class PrimaryController implements Initializable {
 			Scene scene = new Scene(loader.load(), 800, 600);
 			textualWindow = new Stage();
 			textualWindow.setMaximized(false);
-			textualWindow.setTitle("Ferramenta Textual");
+			textualWindow.setTitle("Apresentação Textual");
 			textualWindow.setScene(scene);
 			textualWindow.show();
 		} catch (IOException e) {
@@ -269,7 +269,7 @@ public class PrimaryController implements Initializable {
 			Scene scene = new Scene(loader.load(), 200, 200);
 			textualWindow = new Stage();
 			textualWindow.setMaximized(false);
-			textualWindow.setTitle("Ferramenta Tabular");
+			textualWindow.setTitle("Apresentação Tabular");
 			textualWindow.setScene(scene);
 			textualWindow.show();
 		} catch (IOException e) {
@@ -278,11 +278,11 @@ public class PrimaryController implements Initializable {
 	}
 
 	public void graficoAction() {
-
+		
 		if(recordList == null) {
 			return;
 		}
-
+		
 		ChartController graphcontrol = new ChartController(counting);
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("graphicsView.fxml"));
@@ -298,7 +298,6 @@ public class PrimaryController implements Initializable {
 			e.printStackTrace();
 		}
 	}
-
 
 	private void getRecordList() {
 		for (int row = 1; row < sheet.getLastRowNum(); row++) {
