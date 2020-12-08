@@ -34,6 +34,13 @@ public class App extends Application implements EventHandler<ActionEvent> {
 	private Button avaliarButton;
 	private Workbook book;
 
+	 /**
+	  * Inicia o stage inicial necessário para a janela do GUI.
+	  * 
+	  * @param    stage    stage que receberá a cena (scene) desenvolvida   
+	  * @author            Tiago Torres
+	  */
+	
     @Override
     public void start(Stage stage) throws IOException, InterruptedException {
     	
@@ -82,12 +89,26 @@ public class App extends Application implements EventHandler<ActionEvent> {
         
     }
     
+    /**
+	  * Lida com o evento gerado quando o botão "avaliar" é accionado.
+	  * 
+	  * @param    event    evento que foi accionado.   
+	  * @author            Tiago Torres
+	  */
+    
     @Override 
     public void handle(ActionEvent event) {
     	if(event.getSource() == avaliarButton) {
     		
     	}
     }
+    
+    /**
+	  * Inicia o stage inicial necessário para a janela do GUI.
+	  * 
+	  * @param    stage    stage que receberá a cena (scene) desenvolvida   
+	  * @author            Tiago Torres
+	  */
     
     private void getChoice(ChoiceBox<String> choiceBox) {
     	if(choiceBox.getValue().equals("Textual")) {
