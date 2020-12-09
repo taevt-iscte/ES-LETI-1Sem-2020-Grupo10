@@ -39,6 +39,14 @@ public class TextualController implements Initializable {
 		this.recordMap = recordMap;
 	}
 
+	/**
+	  * Permite inicializar o controlador assim que o objeto root terminar de processar.
+	  * 
+	  * @param    location     localização do root object a usar inicializado. 
+	  * @param    resources    localização dos recursos a serem utilizados para localizar o root object.
+	  * @author   José Raposo
+	  */
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 

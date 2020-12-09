@@ -23,6 +23,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
+/**
+ * Controlador responsável por gerir as regras desenvolvidas pelo utilizador e como estas interagem com as multiplas formas de representar as avaliações produzidas pelas
+ * mesmas.
+ * 
+ * @see      PrimaryController
+ * @author   Tiago Torres
+ */
+
 public class UserRulesController implements Initializable {
 	
 	@FXML private TableView<RuleCondition> table = new TableView<>();
@@ -45,6 +53,13 @@ public class UserRulesController implements Initializable {
 	
 	);
 	
+	/**
+	  * Permite inicializar o controlador assim que o objeto root terminar de processar.
+	  * 
+	  * @param    location     localização do root object a usar inicializado. 
+	  * @param    resources    localização dos recursos a serem utilizados para localizar o root object.
+	  * @author   Tiago Torres
+	  */
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -60,6 +75,11 @@ public class UserRulesController implements Initializable {
 		
 	}
 	
+	/**
+	  * Processa a ação causada ao clicar no botão na GUI para adicionar uma nova regra.
+	  * 
+	  * @author   Tiago Torres
+	  */
 	
 	public void addButtonAction() {
 		RuleCondition rl = new RuleCondition();
@@ -70,6 +90,12 @@ public class UserRulesController implements Initializable {
 		valueInput.clear();
 	}
 	
+	/**
+	  * Processa a ação causada ao clicar no botão na GUI para eliminar uma das regras desenhadas pelo utilizador.
+	  * 
+	  * @author   Tiago Torres
+	  */
+	
 	public void deleteButtonAction() {
 		ObservableList<RuleCondition> ruleCondSelected;
 		ObservableList<RuleCondition> allRulesCond;
@@ -79,6 +105,12 @@ public class UserRulesController implements Initializable {
 		ruleCondSelected.forEach(allRulesCond::remove);
 		
 	}
+	
+	/**
+	  * Processa a ação causada ao clicar no botão na GUI para avançar na próxima janela programada no desenvolvimento de regras.
+	  * 
+	  * @author   Tiago Torres
+	  */
 	
 	public void nextStepAction() {
 		ArrayList<RuleCondition> list_rl = new ArrayList<RuleCondition>(table.getItems());
@@ -98,6 +130,12 @@ public class UserRulesController implements Initializable {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	  * Método auxiliar da classe que devolve uma lista vazia caso o textCtrl estiver vazio ou, caso contrário, adquire a informação.
+	  * 
+	  * @author   Tiago Torres
+	  */
 	
 	public ArrayList<String> getArray() {
 		if (textCtrl == null)
