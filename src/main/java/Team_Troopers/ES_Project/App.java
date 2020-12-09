@@ -115,16 +115,38 @@ public class App extends Application implements EventHandler<ActionEvent> {
     		
     	}
     }
+    
+    /**
+	  * Escolher o caminho (Root) utilizado pela scene em questão.
+	  * 
+	  * @param    fxml     caminho que será utilizado pela scene.  
+	  * @author            Tiago Torres
+	  */
 
   static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
 
+  /**
+	  * Permite realizar o load da parcela FXMLLoader com o caminho dado.
+	  * 
+	  * @param    fxml     caminho que será utilizado pelo loader. 
+	  * @return			   devolve o load caso não ocorram falhas, devolve uma exceção caso existam erros. 
+	  * @author            Tiago Torres
+	  */
+  
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
     }
 
+    /**
+	  * Permite correr a aplicação desenvolvida na classe.
+	  * 
+	  * @param    args	   Argumentos dados para o main. 
+	  * @author            Tiago Torres
+	  */
+    
     public static void main(String[] args) {
         launch();
     }

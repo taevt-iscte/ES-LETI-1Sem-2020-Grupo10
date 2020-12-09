@@ -1,5 +1,11 @@
 package Team_Troopers.ES_Project;
 
+/**
+ * Enumerado desenvolvido para assistir os dados do hashmap, garantindo uma representação de cada um deles.
+ * 
+ * @author   Tiago Torres
+ */
+
 public enum EvalType {
 	
 	PLASMA_DCI, PLASMA_DII, PLASMA_ADCI, PLASMA_ADII,

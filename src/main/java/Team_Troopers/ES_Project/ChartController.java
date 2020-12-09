@@ -38,9 +38,24 @@ public class ChartController implements Initializable {
     @FXML
     private NumberAxis y;
     
+    /**
+	  * Permite construir um objetivo da classe.
+	  * 
+	  * @param    data     hashmap desenvolvido no controlador principal que contém todas as avaliações dos dados do excel.
+	  * @author   José Raposo
+	  */
+    
     public ChartController(HashMap<EvalType, Integer> data) {
 		this.data = data;
 	}
+    
+    /**
+	  * Permite inicializar o controlador assim que o objeto root terminar de processar.
+	  * 
+	  * @param    location     localização do root object a usar inicializado. 
+	  * @param    resources    localização dos recursos a serem utilizados para localizar o root object.
+	  * @author   José Raposo
+	  */
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -84,6 +99,12 @@ public class ChartController implements Initializable {
 		
 	}
 
+	/**
+	  * Função assistente do inicializar, permite consultar os dados do hashmap sempre que inicializado, garantindo que todos os resultados são sempre atualizados.
+	  * 
+	  * @author   José Raposo
+	  */
+	
 	private void getValues() {
 		plasma_dci = data.getOrDefault(EvalType.PLASMA_DCI, 0);
 		plasma_dii = data.getOrDefault(EvalType.PLASMA_DII, 0);

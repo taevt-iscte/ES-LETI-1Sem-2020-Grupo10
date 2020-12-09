@@ -22,6 +22,14 @@ public class ExcelController implements Initializable {
 		ExcelController.recordList = recordList;
 	}
 
+	/**
+	  * Permite inicializar o controlador assim que o objeto root terminar de processar.
+	  * 
+	  * @param    location     localização do root object a usar inicializado. 
+	  * @param    resources    localização dos recursos a serem utilizados para localizar o root object.
+	  * @author   Tiago Torres
+	  */
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		addColumns();
