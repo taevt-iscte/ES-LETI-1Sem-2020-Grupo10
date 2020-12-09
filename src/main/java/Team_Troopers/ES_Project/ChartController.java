@@ -1,6 +1,7 @@
 package Team_Troopers.ES_Project;
 
 import java.net.URL;
+
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
@@ -10,6 +11,14 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+
+/**
+ * Controlador da representação gráfica, ao ser accionado pelo controlado principal irá adquirir os valores de avaliação dos dados presentes no excel dado e lançará
+ * uma representação de barras comparativa.
+ * 
+ * @see      PrimaryController
+ * @author   José Raposo
+ */
 
 public class ChartController implements Initializable {
 	
@@ -39,7 +48,7 @@ public class ChartController implements Initializable {
     private NumberAxis y;
     
     /**
-	  * Permite construir um objetivo da classe.
+	  * Permite construir um objeto da classe.
 	  * 
 	  * @param    data     hashmap desenvolvido no controlador principal que contém todas as avaliações dos dados do excel.
 	  * @author   José Raposo
@@ -54,6 +63,7 @@ public class ChartController implements Initializable {
 	  * 
 	  * @param    location     localização do root object a usar inicializado. 
 	  * @param    resources    localização dos recursos a serem utilizados para localizar o root object.
+	  * @see      Initializable
 	  * @author   José Raposo
 	  */
 

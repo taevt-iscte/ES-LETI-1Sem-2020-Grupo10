@@ -11,6 +11,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 
+/**
+ * Controlador responsável pela regulação da regras desenvolvidas pelo utilizador.
+ * 
+ * @see      PrimaryController
+ * @see		 RuleCondition
+ * @see		 Rules
+ * @author   João Polónio
+ */
+
 public class RulesController implements Initializable {
 	
 	@FXML ComboBox<String> combo_Metric_00;
@@ -28,6 +37,12 @@ public class RulesController implements Initializable {
 	private ArrayList<RuleCondition> list_rl;
 	private ArrayList<String> data = new ArrayList<>();
 	
+	/**
+	  * Permite construir um objeto da classe.
+	  * 
+	  * @param    list_r12     ArrayList que servirá de veiculo para as métricas e valores lógicos dados pelo utilizador.
+	  * @author   João Polónio
+	  */
 	
 	public RulesController(ArrayList<RuleCondition> list_rl2) {
 		
@@ -43,6 +58,14 @@ public class RulesController implements Initializable {
 		
 	}
 
+	/**
+	  * Permite inicializar o controlador assim que o objeto root terminar de processar, neste caso, irá lidar com a seleção e atribuição dos valores recebidos a partir
+	  * da janela interativa ao utilizador, lidando com as escolhas dadas pelo mesmo, podendo mais tarde devolver os valores para serem trabalhados.
+	  * 
+	  * @param    location     localização do root object a usar inicializado. 
+	  * @param    resources    localização dos recursos a serem utilizados para localizar o root object.
+	  * @author   João Polónio
+	  */
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -83,12 +106,24 @@ public class RulesController implements Initializable {
 		
 	}
 	
+	/**
+	  * Método auxiliar desenvolvido para tornar possível a utilização de lógicas e métricas por parte do utilizador após o botão "+" ser utilizado.
+	  * 
+	  * @author   João Polónio
+	  */
+	
 	public void plusButtonClicked() {
 		combo_Logic_11.setVisible(true);
 		combo_Metric_20.setVisible(true);
 		combo_Logic_21.setVisible(true);
 		combo_Metric_22.setVisible(true);
 	}
+	
+	/**
+	  * Método auxiliar desenvolvido para devolver todos os valores admitidos pelo utilizador assim que concluir todas as suas decisões quanto às regras desenvolvidas.
+	  * 
+	  * @author   João Polónio
+	  */
 	
 	public void submitButtonClicked() {
 		
@@ -111,6 +146,13 @@ public class RulesController implements Initializable {
 		System.out.println("I'm supposed to hide now");
 
 	}
+	
+	/**
+	  * Método auxiliar desenvolvido para ser possível adquirir a informação das regras desenvolvidas pelo utilizador a partir de classes exteriores.
+	  * 
+	  * @return	  data			Conjunto das regras a serem devolvidas às outras classes.
+	  * @author   João Polónio
+	  */
 	
 	public ArrayList<String> getData() {
 		return data;		

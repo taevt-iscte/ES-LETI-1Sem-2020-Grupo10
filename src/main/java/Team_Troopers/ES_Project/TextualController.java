@@ -9,6 +9,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.shape.Line;
 
+/**
+ * Controlador responsável pela representação textual das avaliações produzidas pelas ferramentas já existentes, ou das regras desenvolvidas pelo utilizador, dos valores
+ * presentes no ficheiro excel utilizado.
+ * 
+ * @see      PrimaryController
+ * @author   José Raposo
+ */
+
 public class TextualController implements Initializable {
 	
 	private HashMap<EvalType, Integer> recordMap;

@@ -1,11 +1,29 @@
 package Team_Troopers.ES_Project;
 
+/**
+ * Classe auxiliar responsável por desenvolver blocos de informação, entradas da tabela, para organizar cada uma das avaliações.
+ * 
+ * @see      TableController
+ * @author   Tiago Torres
+ */
+
 public class TableEntry {
 	
 	private String type;
 	private int pmd_count;
 	private int iPlasma_count;
 	private int user_count;
+	
+	 /**
+	  * Permite construir um objeto da classe.
+	  * 
+	  * @param    type    				Tipo de avaliação a ser contemplada
+	  * @param    pmd_count    			Valor representativo da quantidade de vezes que esta avaliação foi encontrada pela ferramenta PMD.
+	  * @param    iPlasma_count    		Valor representativo da quantidade de vezes que esta avaliação foi encontrada pela ferramenta iPlasma.
+	  * @param    user_count    		Valor representativo da quantidade de vezes que esta avaliação foi encontrada a partir das regras desenvolvidas pelo utilizador.
+	  * 
+	  * @author   Tiago Torres
+	  */
 	
 	public TableEntry(String type, int pmd_count, int iPlasma_count, int user_count) {
 		this.type = type;

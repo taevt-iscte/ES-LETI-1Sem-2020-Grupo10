@@ -1,16 +1,40 @@
 package Team_Troopers.ES_Project;
 
+/**
+ * Classe responsável por gerar um objeto representativo de uma condição desenvolvida pelo utilizador.
+ * 
+ * @see      PrimaryController
+ * @see		 RulesController
+ * @see		 Rules
+ * @author   João Polónio
+ */
+
 public class RuleCondition {
 	
 	private String metric;
 	private String operator;
 	private long value;
 	
+	/**
+	  * Permite construir um objeto da classe.
+	  * 
+	  * @author   João Polónio
+	  */
+	
 	public RuleCondition() {
 		this.metric ="";
 		this.operator = "";
 		this.value = 0;
 	}
+	
+	/**
+	  * Permite construir um objeto da classe.
+	  * 
+	  * @param    metric     	Metrica a ser inserida na condição criada.
+	  * @param	  operador		Operador a ser utilizado na condição criada.
+	  * @param	  value			Valor a ser reservado por parte da condição criada.
+	  * @author   João Polónio
+	  */
 	
 	public RuleCondition(String metric, String operator, long value) {
 		if(value >= 0) {

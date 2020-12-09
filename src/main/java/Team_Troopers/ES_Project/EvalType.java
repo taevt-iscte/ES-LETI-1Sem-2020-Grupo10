@@ -3,7 +3,9 @@ package Team_Troopers.ES_Project;
 /**
  * Enumerado desenvolvido para assistir os dados do hashmap, garantindo uma representação de cada um deles.
  * 
- * @author   Tiago Torres
+ * @see      PrimaryController
+ * @see      ExcelRecord
+ * @author   Tiago Torres, José Raposo
  */
 
 public enum EvalType {

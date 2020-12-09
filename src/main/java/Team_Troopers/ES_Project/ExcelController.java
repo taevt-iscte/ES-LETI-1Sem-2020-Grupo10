@@ -8,15 +8,29 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+
+/**
+ * Controlador responsável pela representação tabular dos valores vindos do excel, permitindo ao utilizador não só importar os valores do ficheiro para a aplicação, 
+ * bem como receber uma visualização otimizada e rápida dos mesmos.
+ * 
+ * @see      PrimaryController
+ * @author   Tiago Torres
+ */
 
 public class ExcelController implements Initializable {
 
 	@FXML
 	private TableView<ExcelRecord> table;
 	private static ArrayList<ExcelRecord> recordList;
+	
+	 /**
+	  * Permite construir um objeto da classe.
+	  * 
+	  * @param    recordList     ArrayList com valores da classe ExcelRecord, contendo cada um informação relativa a uma linha do excel lido.
+	  * @author   Tiago Torres
+	  */
 
 	public ExcelController(ArrayList<ExcelRecord> recordList) {
 		ExcelController.recordList = recordList;
@@ -60,6 +74,13 @@ public class ExcelController implements Initializable {
 		table.getItems().setAll(FXCollections.observableArrayList(recordList));
 //		table.autosize();
 	}
+	
+	 /**
+	  * Método auxiliar da classe, lançado ao inicializar o controlador. 
+	  * Permite construir a tabela principal a ser devolvida com as colunas necessárias para apresentar todos os tipos de dados adquiridos.
+	  * 
+	  * @author   Tiago Torres
+	  */
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void addColumns() {

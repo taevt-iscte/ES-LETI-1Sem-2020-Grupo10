@@ -25,8 +25,11 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 
 /**
- * JavaFX App
+ * GUI principal, responsável por organizar todos os comandos de forma clara para uso do utilizador.
+ * 
+ * @author   João Polónio
  */
+
 public class App extends Application implements EventHandler<ActionEvent> {
 
     private static Scene scene;
@@ -38,7 +41,7 @@ public class App extends Application implements EventHandler<ActionEvent> {
 	  * Inicia o stage inicial necessário para a janela do GUI.
 	  * 
 	  * @param    stage    stage que receberá a cena (scene) desenvolvida   
-	  * @author            Tiago Torres
+	  * @author            João Polónio
 	  */
 	
     @Override
@@ -93,7 +96,7 @@ public class App extends Application implements EventHandler<ActionEvent> {
 	  * Lida com o evento gerado quando o botão "avaliar" é accionado.
 	  * 
 	  * @param    event    evento que foi accionado.   
-	  * @author            Tiago Torres
+	  * @author            João Polónio
 	  */
     
     @Override 
@@ -107,7 +110,7 @@ public class App extends Application implements EventHandler<ActionEvent> {
 	  * Inicia o stage inicial necessário para a janela do GUI.
 	  * 
 	  * @param    stage    stage que receberá a cena (scene) desenvolvida   
-	  * @author            Tiago Torres
+	  * @author            João Polónio
 	  */
     
     private void getChoice(ChoiceBox<String> choiceBox) {
@@ -120,7 +123,7 @@ public class App extends Application implements EventHandler<ActionEvent> {
 	  * Escolher o caminho (Root) utilizado pela scene em questão.
 	  * 
 	  * @param    fxml     caminho que será utilizado pela scene.  
-	  * @author            Tiago Torres
+	  * @author            João Polónio
 	  */
 
   static void setRoot(String fxml) throws IOException {
@@ -132,7 +135,7 @@ public class App extends Application implements EventHandler<ActionEvent> {
 	  * 
 	  * @param    fxml     caminho que será utilizado pelo loader. 
 	  * @return			   devolve o load caso não ocorram falhas, devolve uma exceção caso existam erros. 
-	  * @author            Tiago Torres
+	  * @author            João Polónio
 	  */
   
     private static Parent loadFXML(String fxml) throws IOException {
@@ -144,7 +147,7 @@ public class App extends Application implements EventHandler<ActionEvent> {
 	  * Permite correr a aplicação desenvolvida na classe.
 	  * 
 	  * @param    args	   Argumentos dados para o main. 
-	  * @author            Tiago Torres
+	  * @author            João Polónio
 	  */
     
     public static void main(String[] args) {

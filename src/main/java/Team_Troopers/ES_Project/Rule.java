@@ -2,10 +2,26 @@ package Team_Troopers.ES_Project;
 
 import java.util.ArrayList;
 
+/**
+ * Classe responsável por gerar um objeto representativo de uma regra desenvolvida pelo utilizador.
+ * 
+ * @see      PrimaryController
+ * @see		 RulesController
+ * @see		 RuleCondition
+ * @author   João Polónio
+ */
+
 public class Rule {
 	
 	private ArrayList<String> rule = new ArrayList<>();
 	private int numberMetrics;
+	
+	/**
+	  * Permite construir um objeto da classe.
+	  * 
+	  * @param    rule		     ArrayList com a informação submetida pelo utilizador a fim de ser utilizado.
+	  * @author   João Polónio
+	  */
 	
 	public Rule(ArrayList<String> rule) {
 		this.rule = rule;

@@ -12,6 +12,14 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+/**
+ * Controlador responsável pela representação tabular das avaliações finais devolvidas pelo controlador principal.
+ * 
+ * @see      PrimaryController
+ * @see		 TableEntry
+ * @author   Tiago Torres
+ */
+
 public class TableController implements Initializable {
 	
 	@FXML
@@ -22,6 +30,14 @@ public class TableController implements Initializable {
 		TableController.count = count;
 	}
 
+	/**
+	  * Permite inicializar o controlador assim que o objeto root terminar de processar.
+	  * 
+	  * @param    location     localização do root object a usar inicializado. 
+	  * @param    resources    localização dos recursos a serem utilizados para localizar o root object.
+	  * @author   Tiago Torres
+	  */
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -49,6 +65,12 @@ public class TableController implements Initializable {
 		
 	}
 
+	/**
+	  * Método auxiliar da classe responsável por adicionar na tabela entradas tabulares (TableEntry) com os resultados de cada uma das avaliações.
+	  * 
+	  * @author   Tiago Torres
+	  */
+	
 	private void addItems() {
 		TableEntry dci = new TableEntry("DCI", count.get(EvalType.PMD_DCI), count.get(EvalType.PLASMA_DCI), count.getOrDefault(EvalType.USER_DCI, 0));
 		TableEntry dii = new TableEntry("DII", count.get(EvalType.PMD_DII), count.get(EvalType.PLASMA_DII), count.getOrDefault(EvalType.USER_DII, 0));

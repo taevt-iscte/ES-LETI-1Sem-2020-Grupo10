@@ -29,6 +29,16 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
+/**
+ * Controlador principal, responsável pela gestão backend da GUI, gerindo a utilização de dados, bem como da sua representação ao utilizador.
+ * 
+ * @see      App
+ * @see		 ChartController
+ * @see		 TableController
+ * @see		 TextualController
+ * @author   Tiago Torres, João Polónio, José Raposo
+ */
+
 public class PrimaryController implements Initializable {
 
 	@FXML private Button importExcel;
@@ -46,6 +56,14 @@ public class PrimaryController implements Initializable {
 	private HashMap<EvalType, Integer> counting;
 	private ArrayList<String> userArray = new ArrayList<>();
 
+	/**
+	  * Permite inicializar o controlador assim que o objeto root terminar de processar.
+	  * 
+	  * @param    location     localização do root object a usar inicializado. 
+	  * @param    resources    localização dos recursos a serem utilizados para localizar o root object.
+	  * @author   João Polónio
+	  */
+	
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		avaliarTools.getItems().addAll("Textual", "Tabular", "Gráfica");
@@ -53,6 +71,13 @@ public class PrimaryController implements Initializable {
 		counting = new HashMap<EvalType, Integer>();
 		use_rules.selectedProperty().addListener(this::edit_count);
 	}
+	
+	/**
+	  * Permite lidar com o evento de fechar a janela principal do GUI, bem como a consequência de esta ser fechada em outras janelas possivelmente ainda ativas.
+	  * 
+	  * @param    e			    Evento causado pelo encerramento da janela principal. 
+	  * @author   João Polónio
+	  */
 
 	public void closeMainWindow(WindowEvent e) {
 		if (sheet == null)
@@ -66,6 +91,15 @@ public class PrimaryController implements Initializable {
 		else
 			e.consume();
 	}
+	
+	/**
+	  * Método auxiliar da classe, responsável por lidar com os valores de avaliação de acordo com a possibilidade de existência de regras ativas do utilizador.
+	  * 
+	  * @param    observable		Evento causado pelo encerramento da janela principal.
+	  * @param	  oldValue			
+	  * @param	  newValue			 
+	  * @author   Tiago Torres
+	  */
 
 	private void edit_count(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
 		System.out.println(newValue ? "Selected" : "Not Selected");
@@ -78,6 +112,12 @@ public class PrimaryController implements Initializable {
 			counting.remove(EvalType.USER_ADII);
 		}
 	}
+	
+	/**
+	  * Método auxiliar responsável por atualizar os valores a serem utilizados pelos outros controladores relativamente à avaliação dos valores presentes no ficheiro.
+	  * 
+	  * @author   João Polónio
+	  */
 
 	private void count_user() {
 		EvalType[] list = {EvalType.USER_DCI, EvalType.USER_DII, EvalType.USER_ADCI, EvalType.USER_ADII};
@@ -112,6 +152,15 @@ public class PrimaryController implements Initializable {
 		}
 		System.out.println(rules);
 	}
+	
+	/**
+	  * Método auxiliar desenvolvido com o propósito de regular a composição de regras definidas pelo utilizador.
+	  * 
+	  * @param    bools			   Array que agrupa o conjunto de booleanos definidos pelo utilizador, por ordem.
+	  * @param	  op			   Array que agrupa o conjunto de operações definidas pelo utilizador, por ordem.
+	  * @return   bools.get(0)     Valor booleano definitivo em relação ao conjunto de booleanos definidos.
+	  * @author   Tiago Torres
+	  */
 
 	private boolean calcPass(ArrayList<Boolean> bools, ArrayList<String> op) {
 		boolean end = false;
@@ -140,6 +189,15 @@ public class PrimaryController implements Initializable {
 		}
 		return bools.get(0);
 	}
+	
+	/**
+	  * Método auxiliar desenvolvido com o propósito de regular a composição de regras definidas pelo utilizador.
+	  * 
+	  * @param    parts			   Array que agrupa o conjunto de métricas refletoras do método avaliado.
+	  * @param	  r			   	   Linha de excel a ser desdobrada em blocos de informação útil à avaliação.
+	  * @return   pass    		   Valor booleano responsável pela avaliação de cada uma das métricas.
+	  * @author   Tiago Torres
+	  */
 
 	private boolean applyRule(String[] parts, ExcelRecord r) {
 		double val = 0;
@@ -169,6 +227,12 @@ public class PrimaryController implements Initializable {
 		}
 		return pass;
 	}
+	
+	/**
+	  * Método auxiliar desenvolvido com o propósito de regular o botão de importação de excel presente na GUI, bem como o seu funcionamento.
+	  * 
+	  * @author   Tiago Torres
+	  */
 
 	public void importAction() {
 		if (!set) {
@@ -225,6 +289,12 @@ public class PrimaryController implements Initializable {
 		}
 
 	}
+	
+	/**
+	  * Método auxiliar desenvolvido com o propósito de retirar os valores calculados a partir das regras do utilizador, devolvendo os valores default.
+	  * 
+	  * @author   Tiago Torres
+	  */
 
 	private void countTypes() {
 		for (EvalType e : EvalType.values())
@@ -236,6 +306,13 @@ public class PrimaryController implements Initializable {
 			counting.put(record.getEval()[1], counting.get(record.getEval()[1])+1);
 		});
 	}
+	
+	/**
+	  * Método auxiliar desenvolvido com o propósito de reconhecer a escolha do utilizador quanto à representação gráfica utilizada para os valores de avaliação
+	  * calculados.
+	  * 
+	  * @author   João Polónio
+	  */
 
 	public void avaliarTool() {
 		String choice = avaliarTools.getValue();
@@ -252,6 +329,14 @@ public class PrimaryController implements Initializable {
 			}
 		}
 	}
+	
+	/**
+	  * Método auxiliar desenvolvido com o propósito de gerar uma ponte entre o controlador primário da GUI e o controlador da visualização textual de dados, criando
+	  * uma janela representativa, bem como chamando o seu controlador.
+	  * 
+	  * @see	  TextualControllor
+	  * @author   João Polónio
+	  */
 
 	public void textualAction() {
 		if(recordList == null) {
@@ -272,6 +357,14 @@ public class PrimaryController implements Initializable {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	  * Método auxiliar desenvolvido com o propósito de gerar uma ponte entre o controlador primário da GUI e o controlador da visualização tabular de dados, criando
+	  * uma janela representativa, bem como chamando o seu controlador.
+	  * 
+	  * @see	  TableController
+	  * @author   Tiago Torres
+	  */
 
 	public void tabularAction() {
 		if(sheet == null) {
@@ -292,6 +385,14 @@ public class PrimaryController implements Initializable {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	  * Método auxiliar desenvolvido com o propósito de gerar uma ponte entre o controlador primário da GUI e o controlador da visualização gráfica de dados, criando
+	  * uma janela representativa, bem como chamando o seu controlador.
+	  * 
+	  * @see	  ChartController
+	  * @author   José Raposo
+	  */
 
 	public void graficoAction() {
 
@@ -314,6 +415,13 @@ public class PrimaryController implements Initializable {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	  * Método auxiliar desenvolvido com o propósito de adquirir os valores presentes na sheet da classe, a fim de os devolver a qualquer um dos controladores que assim
+	  * precisar.
+	  * 
+	  * @author   Tiago Torres
+	  */
 
 	private void getRecordList() {
 		for (int row = 1; row < sheet.getLastRowNum(); row++) {
@@ -344,6 +452,14 @@ public class PrimaryController implements Initializable {
 					pmd, is_feature_envy));
 		}
 	}
+	
+	/**
+	  * Método auxiliar desenvolvido com o propósito de gerar uma ponte entre o controlador primário da GUI e o controlador de regras do utilizador, criando
+	  * uma janela representativa, bem como chamando o seu controlador.
+	  * 
+	  * @see	  UserRulesController
+	  * @author   Tiago Torres
+	  */
 
 	@FXML public void userRulesAction() {
 		UserRulesController userRules = new UserRulesController();
