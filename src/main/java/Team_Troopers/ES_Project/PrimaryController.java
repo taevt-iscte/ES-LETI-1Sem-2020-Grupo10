@@ -57,13 +57,13 @@ public class PrimaryController implements Initializable {
 	private ArrayList<String> userArray = new ArrayList<>();
 
 	/**
-	  * Permite inicializar o controlador assim que o objeto root terminar de processar.
-	  * 
-	  * @param    location     localização do root object a usar inicializado. 
-	  * @param    resources    localização dos recursos a serem utilizados para localizar o root object.
-	  * @author   João Polónio
-	  */
-	
+	 * Permite inicializar o controlador assim que o objeto root terminar de processar.
+	 * 
+	 * @param    location     localização do root object a usar inicializado. 
+	 * @param    resources    localização dos recursos a serem utilizados para localizar o root object.
+	 * @author   João Polónio
+	 */
+
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		avaliarTools.getItems().addAll("Textual", "Tabular", "Gráfica");
@@ -71,13 +71,13 @@ public class PrimaryController implements Initializable {
 		counting = new HashMap<EvalType, Integer>();
 		use_rules.selectedProperty().addListener(this::edit_count);
 	}
-	
+
 	/**
-	  * Permite lidar com o evento de fechar a janela principal do GUI, bem como a consequência de esta ser fechada em outras janelas possivelmente ainda ativas.
-	  * 
-	  * @param    e			    Evento causado pelo encerramento da janela principal. 
-	  * @author   João Polónio
-	  */
+	 * Permite lidar com o evento de fechar a janela principal do GUI, bem como a consequência de esta ser fechada em outras janelas possivelmente ainda ativas.
+	 * 
+	 * @param    e			    Evento causado pelo encerramento da janela principal. 
+	 * @author   João Polónio
+	 */
 
 	public void closeMainWindow(WindowEvent e) {
 		if (sheet == null)
@@ -91,148 +91,25 @@ public class PrimaryController implements Initializable {
 		else
 			e.consume();
 	}
-	
+
 	/**
-	  * Método auxiliar da classe, responsável por lidar com os valores de avaliação de acordo com a possibilidade de existência de regras ativas do utilizador.
-	  * 
-	  * @param    observable		Evento causado pelo encerramento da janela principal.
-	  * @param	  oldValue			
-	  * @param	  newValue			 
-	  * @author   Tiago Torres
-	  */
+	 * Método auxiliar da classe, responsável por lidar com os valores de avaliação de acordo com a possibilidade de existência de regras ativas do utilizador.
+	 * 
+	 * @param    observable		Evento causado pelo encerramento da janela principal.
+	 * @param	  oldValue			
+	 * @param	  newValue			 
+	 * @author   Tiago Torres
+	 */
 
 	private void edit_count(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-		System.out.println(newValue ? "Selected" : "Not Selected");
-		if (newValue) {
-			count_user();
-		} else {
-			counting.remove(EvalType.USER_DCI);
-			counting.remove(EvalType.USER_DII);
-			counting.remove(EvalType.USER_ADCI);
-			counting.remove(EvalType.USER_ADII);
-		}
+		counting = Util.count_user(counting, recordList, userArray, newValue);
 	}
-	
-	/**
-	  * Método auxiliar responsável por atualizar os valores a serem utilizados pelos outros controladores relativamente à avaliação dos valores presentes no ficheiro.
-	  * 
-	  * @author   João Polónio
-	  */
 
-	private void count_user() {
-		EvalType[] list = {EvalType.USER_DCI, EvalType.USER_DII, EvalType.USER_ADCI, EvalType.USER_ADII};
-		boolean found = false;
-		for (EvalType e : list) {
-			found = found || counting.containsKey(e);
-		}
-
-		if (found) {
-			counting.remove(EvalType.USER_DCI);
-			counting.remove(EvalType.USER_DII);
-			counting.remove(EvalType.USER_ADCI);
-			counting.remove(EvalType.USER_ADII);
-		}
-		ArrayList<String> rules = new ArrayList<>();
-		ArrayList<String> op = new ArrayList<>();
-		for (int i = 0; i < userArray.size(); i++) {
-			if (i % 2 == 0)
-				rules.add(userArray.get(i));
-			else
-				op.add(userArray.get(i)); 
-		}
-		if (rules.isEmpty())
-			return;
-		for (ExcelRecord r : recordList) {
-			ArrayList<Boolean> results = new ArrayList<>();
-			for (String rule : rules) {
-				results.add(applyRule(rule.split(" "), r));
-			}
-			boolean pass = calcPass(results, op);
-			counting.put(r.userEval(pass), counting.getOrDefault(r.userEval(pass), 0) + 1);
-		}
-		System.out.println(rules);
-	}
-	
 	/**
-	  * Método auxiliar desenvolvido com o propósito de regular a composição de regras definidas pelo utilizador.
-	  * 
-	  * @param    bools			   Array que agrupa o conjunto de booleanos definidos pelo utilizador, por ordem.
-	  * @param	  op			   Array que agrupa o conjunto de operações definidas pelo utilizador, por ordem.
-	  * @return   bools.get(0)     Valor booleano definitivo em relação ao conjunto de booleanos definidos.
-	  * @author   Tiago Torres
-	  */
-
-	private boolean calcPass(ArrayList<Boolean> bools, ArrayList<String> op) {
-		boolean end = false;
-		int index1, index2, index3;
-		while (bools.size() != 1) {
-			if (!end) {
-				index1 = 0;
-				index2 = 1;
-				index3 = 0;
-			} else {
-				index1 = bools.size()-1;
-				index2 = bools.size()-2;
-				index3 = op.size()-1;
-			}
-			switch (op.get(index3)) {
-			case "AND":
-				bools.set(index2, bools.get(index1) && bools.get(index2));
-				break;
-			case "OR":
-				bools.set(index2, bools.get(index1) || bools.get(index2));
-				break;
-			}
-			bools.remove(index1);
-			op.remove(index3);
-			end = !end;
-		}
-		return bools.get(0);
-	}
-	
-	/**
-	  * Método auxiliar desenvolvido com o propósito de regular a composição de regras definidas pelo utilizador.
-	  * 
-	  * @param    parts			   Array que agrupa o conjunto de métricas refletoras do método avaliado.
-	  * @param	  r			   	   Linha de excel a ser desdobrada em blocos de informação útil à avaliação.
-	  * @return   pass    		   Valor booleano responsável pela avaliação de cada uma das métricas.
-	  * @author   Tiago Torres
-	  */
-
-	private boolean applyRule(String[] parts, ExcelRecord r) {
-		double val = 0;
-		switch(parts[0]) {
-		case "LOC":
-			val = (double) r.getLoc();
-			break;
-		case "CYCLO":
-			val = (double) r.getCyclo();
-			break;
-		case "ATFD":
-			val = (double) r.getAtfd();
-			break;
-		case "LAA":
-			val = (double) r.getLaa();
-			break;
-		}
-		double thresh = Double.parseDouble(parts[2]);
-		boolean pass = false;
-		switch(parts[1]) {
-		case "<":
-			pass = val < thresh;
-			break;
-		case ">":
-			pass = val > thresh;
-			break;
-		}
-		return pass;
-	}
-	
-	/**
-	  * Método auxiliar desenvolvido com o propósito de regular o botão de importação de excel presente na GUI, bem como o seu funcionamento.
-	  * 
-	  * @author   Tiago Torres
-	  */
+	 * Método auxiliar desenvolvido com o propósito de regular o botão de importação de excel presente na GUI, bem como o seu funcionamento.
+	 * 
+	 * @author   Tiago Torres
+	 */
 
 	public void importAction() {
 		if (!set) {
@@ -248,7 +125,7 @@ public class PrimaryController implements Initializable {
 			excelWindow.close();
 		}
 		try {
-			sheet = WorkbookFactory.create(f).getSheetAt(0);
+			recordList = Util.parseExcel(f);
 		} catch (EncryptedDocumentException e) {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("There has been an error Opening your file!");
@@ -264,10 +141,8 @@ public class PrimaryController implements Initializable {
 			e.printStackTrace();
 			return;
 		}
-		getRecordList();
-		countTypes();
-		if (use_rules.isSelected())
-			count_user();
+		counting = Util.countTypes(recordList);
+		counting = Util.count_user(counting, recordList, userArray, use_rules.isSelected());
 		ExcelController exCtrl = new ExcelController(recordList);
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("excelView.fxml"));
@@ -289,30 +164,13 @@ public class PrimaryController implements Initializable {
 		}
 
 	}
-	
-	/**
-	  * Método auxiliar desenvolvido com o propósito de retirar os valores calculados a partir das regras do utilizador, devolvendo os valores default.
-	  * 
-	  * @author   Tiago Torres
-	  */
 
-	private void countTypes() {
-		for (EvalType e : EvalType.values())
-			counting.put(e, 0);
-		counting.remove(EvalType.USER_DCI); counting.remove(EvalType.USER_DII);
-		counting.remove(EvalType.USER_ADCI); counting.remove(EvalType.USER_ADII);
-		recordList.forEach(record -> {
-			counting.put(record.getEval()[0], counting.get(record.getEval()[0])+1);
-			counting.put(record.getEval()[1], counting.get(record.getEval()[1])+1);
-		});
-	}
-	
 	/**
-	  * Método auxiliar desenvolvido com o propósito de reconhecer a escolha do utilizador quanto à representação gráfica utilizada para os valores de avaliação
-	  * calculados.
-	  * 
-	  * @author   João Polónio
-	  */
+	 * Método auxiliar desenvolvido com o propósito de reconhecer a escolha do utilizador quanto à representação gráfica utilizada para os valores de avaliação
+	 * calculados.
+	 * 
+	 * @author   João Polónio
+	 */
 
 	public void avaliarTool() {
 		String choice = avaliarTools.getValue();
@@ -329,14 +187,14 @@ public class PrimaryController implements Initializable {
 			}
 		}
 	}
-	
+
 	/**
-	  * Método auxiliar desenvolvido com o propósito de gerar uma ponte entre o controlador primário da GUI e o controlador da visualização textual de dados, criando
-	  * uma janela representativa, bem como chamando o seu controlador.
-	  * 
-	  * @see	  TextualControllor
-	  * @author   João Polónio
-	  */
+	 * Método auxiliar desenvolvido com o propósito de gerar uma ponte entre o controlador primário da GUI e o controlador da visualização textual de dados, criando
+	 * uma janela representativa, bem como chamando o seu controlador.
+	 * 
+	 * @see	  TextualControllor
+	 * @author   João Polónio
+	 */
 
 	public void textualAction() {
 		if(recordList == null) {
@@ -357,14 +215,14 @@ public class PrimaryController implements Initializable {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
-	  * Método auxiliar desenvolvido com o propósito de gerar uma ponte entre o controlador primário da GUI e o controlador da visualização tabular de dados, criando
-	  * uma janela representativa, bem como chamando o seu controlador.
-	  * 
-	  * @see	  TableController
-	  * @author   Tiago Torres
-	  */
+	 * Método auxiliar desenvolvido com o propósito de gerar uma ponte entre o controlador primário da GUI e o controlador da visualização tabular de dados, criando
+	 * uma janela representativa, bem como chamando o seu controlador.
+	 * 
+	 * @see	  TableController
+	 * @author   Tiago Torres
+	 */
 
 	public void tabularAction() {
 		if(sheet == null) {
@@ -385,14 +243,14 @@ public class PrimaryController implements Initializable {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
-	  * Método auxiliar desenvolvido com o propósito de gerar uma ponte entre o controlador primário da GUI e o controlador da visualização gráfica de dados, criando
-	  * uma janela representativa, bem como chamando o seu controlador.
-	  * 
-	  * @see	  ChartController
-	  * @author   José Raposo
-	  */
+	 * Método auxiliar desenvolvido com o propósito de gerar uma ponte entre o controlador primário da GUI e o controlador da visualização gráfica de dados, criando
+	 * uma janela representativa, bem como chamando o seu controlador.
+	 * 
+	 * @see	  ChartController
+	 * @author   José Raposo
+	 */
 
 	public void graficoAction() {
 
@@ -415,51 +273,14 @@ public class PrimaryController implements Initializable {
 			e.printStackTrace();
 		}
 	}
-	
-	/**
-	  * Método auxiliar desenvolvido com o propósito de adquirir os valores presentes na sheet da classe, a fim de os devolver a qualquer um dos controladores que assim
-	  * precisar.
-	  * 
-	  * @author   Tiago Torres
-	  */
 
-	private void getRecordList() {
-		for (int row = 1; row < sheet.getLastRowNum(); row++) {
-			Row r = sheet.getRow(row);
-			int id = (int) r.getCell(0).getNumericCellValue();
-			String package_ = r.getCell(1).getStringCellValue();
-			String class_ = r.getCell(2).getStringCellValue();
-			String method = r.getCell(3).getStringCellValue();
-			int loc = (int) r.getCell(4).getNumericCellValue();
-			int cyclo = (int) r.getCell(5).getNumericCellValue();
-			int atfd = (int) r.getCell(6).getNumericCellValue();
-			double laa = 0;
-			switch (r.getCell(7).getCellType()) {
-			case NUMERIC:
-				laa = r.getCell(7).getNumericCellValue();
-				break;
-			case STRING:
-				laa = Double.parseDouble(r.getCell(7).getStringCellValue());
-				break;
-			default:
-				break;
-			}
-			boolean is_long_method = r.getCell(8).getBooleanCellValue();
-			boolean iPlasma = r.getCell(9).getBooleanCellValue();
-			boolean pmd = r.getCell(10).getBooleanCellValue();
-			boolean is_feature_envy = r.getCell(11).getBooleanCellValue();
-			recordList.add(new ExcelRecord(id, package_, class_, method, loc, cyclo, atfd, laa, is_long_method, iPlasma,
-					pmd, is_feature_envy));
-		}
-	}
-	
 	/**
-	  * Método auxiliar desenvolvido com o propósito de gerar uma ponte entre o controlador primário da GUI e o controlador de regras do utilizador, criando
-	  * uma janela representativa, bem como chamando o seu controlador.
-	  * 
-	  * @see	  UserRulesController
-	  * @author   Tiago Torres
-	  */
+	 * Método auxiliar desenvolvido com o propósito de gerar uma ponte entre o controlador primário da GUI e o controlador de regras do utilizador, criando
+	 * uma janela representativa, bem como chamando o seu controlador.
+	 * 
+	 * @see	  UserRulesController
+	 * @author   Tiago Torres
+	 */
 
 	@FXML public void userRulesAction() {
 		UserRulesController userRules = new UserRulesController();
@@ -474,8 +295,7 @@ public class PrimaryController implements Initializable {
 			userWindow.setScene(scene);
 			userWindow.showAndWait();
 			userArray = userRules.getArray();
-			if (use_rules.isSelected())
-				count_user();
+			counting = Util.count_user(counting, recordList, userArray, use_rules.isSelected());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
