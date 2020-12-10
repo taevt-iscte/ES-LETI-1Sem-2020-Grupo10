@@ -6,5 +6,7 @@ module Team_Troopers.ES_Project {
 	requires javafx.base;
 
     opens Team_Troopers.ES_Project to javafx.fxml;
+    opens Backend to javafx.fxml;
     exports Team_Troopers.ES_Project;
+    exports Backend;
 }

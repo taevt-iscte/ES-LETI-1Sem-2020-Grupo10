@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
+import Backend.EvalType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
@@ -37,6 +38,8 @@ public class ChartController implements Initializable {
 	private Integer user_dii = 0;
 	private Integer user_adci = 0;
 	private Integer user_adii = 0;
+	
+	XYChart.Series<String, Number> plasma_set;
 	
 	@FXML
     private BarChart<String, Number> barChart;
@@ -72,7 +75,7 @@ public class ChartController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		getValues();
 		
-		XYChart.Series<String, Number> plasma_set = new XYChart.Series<String, Number>();
+		plasma_set = new XYChart.Series<String, Number>();
 		plasma_set.setName("iPlasma");
 		
 		plasma_set.getData().add(new XYChart.Data<String, Number>("DCI", plasma_dci));
@@ -130,6 +133,10 @@ public class ChartController implements Initializable {
 		user_dii = data.getOrDefault(EvalType.USER_DII, 0);
 		user_adci = data.getOrDefault(EvalType.USER_ADCI, 0);
 		user_adii = data.getOrDefault(EvalType.USER_ADII, 0);
+	}
+	
+	public Number getplasmaData() {
+		return plasma_set.getData().get(0).getYValue();
 	}
     
 }

@@ -1,4 +1,6 @@
-package Team_Troopers.ES_Project;
+package Backend;
+
+import Team_Troopers.ES_Project.PrimaryController;
 
 /**
  * Enumerado desenvolvido para assistir os dados do hashmap, garantindo uma representação de cada um deles.

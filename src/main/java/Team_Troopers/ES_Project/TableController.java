@@ -4,6 +4,8 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
+import Backend.EvalType;
+import Backend.TableEntry;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -27,7 +29,7 @@ public class TableController implements Initializable {
 	private static HashMap<EvalType, Integer> count;
 	
 	public TableController(HashMap<EvalType, Integer> count) {
-		TableController.count = count;
+		this.count = count;
 	}
 
 	/**

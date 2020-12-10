@@ -1,4 +1,7 @@
-package Team_Troopers.ES_Project;
+package Backend;
+
+import Team_Troopers.ES_Project.ExcelController;
+import Team_Troopers.ES_Project.PrimaryController;
 
 /**
  * Classe auxiliar responsável por agrupar linhas de excel em elementos singulares, com informações repartidas, a fim de serem tratados e representados numa tabela.

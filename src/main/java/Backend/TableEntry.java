@@ -1,4 +1,4 @@
-package Team_Troopers.ES_Project;
+package Backend;
 
 /**
  * Classe auxiliar responsável por desenvolver blocos de informação, entradas da tabela, para organizar cada uma das avaliações.

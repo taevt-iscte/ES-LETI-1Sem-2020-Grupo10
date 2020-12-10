@@ -1,4 +1,7 @@
-package Team_Troopers.ES_Project;
+package Backend;
+
+import Team_Troopers.ES_Project.PrimaryController;
+import Team_Troopers.ES_Project.RulesController;
 
 /**
  * Classe responsável por gerar um objeto representativo de uma condição desenvolvida pelo utilizador.
