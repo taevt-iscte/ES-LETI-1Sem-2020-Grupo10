@@ -47,10 +47,10 @@ public class RuleCondition {
 		}
 	}
 
-	@Override
+/*	@Override
 	public String toString() {
 		return "RuleCondition [metric=" + metric + ", operator=" + operator + ", value=" + value + "]";
-	}
+	} */
 
 	public String getMetric() {
 		return metric;
