@@ -1,8 +1,8 @@
 # ES-LETI-1Sem-2020-Grupo10
 
-João Polónio, 87367, ETC5
-Tiago Torres, 87353, ETC4
-José Raposo, 87183, ETC4
+João Polónio, 87367 //--//
+Tiago Torres, 87353 //--//
+José Raposo, 87183  //--//
 
 //--------------------------//-----------------------// - O que está na frente do código.
 
