@@ -144,7 +144,6 @@ public class RulesController implements Initializable {
 			}
 		}
 		combo_Metric_00.getScene().getWindow().hide();
-		System.out.println("I'm supposed to hide now");
 
 	}
 	

@@ -1,0 +1,6 @@
+Backend.ExcelRecord	[Backend.ExcelRecord::Backend.EvalType eval_pmd, Backend.ExcelRecord::Backend.EvalType eval_iPlasma, Backend.ExcelRecord::getEval():Backend.EvalType[]]
+Backend.ExcelRecord	[Backend.ExcelRecord::boolean is_long_method, Backend.ExcelRecord::userEval(boolean):Backend.EvalType, Backend.ExcelRecord::boolean iPlasma, Backend.ExcelRecord::boolean pmd, Backend.ExcelRecord::evaluate():void]
+
+Team_Troopers.ES_Project.StaticRulesController	[Team_Troopers.ES_Project.StaticRulesController::javafx.scene.control.TextField loc_field, Team_Troopers.ES_Project.StaticRulesController::load_LongMethod():java.util.ArrayList<java.lang.Long>, Team_Troopers.ES_Project.StaticRulesController::javafx.scene.control.TextField cyclo_field]
+
+Team_Troopers.ES_Project.UserRulesController	[Team_Troopers.ES_Project.UserRulesController::javafx.scene.control.Button addButton, Team_Troopers.ES_Project.UserRulesController::nextStepAction():void, Team_Troopers.ES_Project.UserRulesController::javafx.stage.Stage rulesWindow, Team_Troopers.ES_Project.UserRulesController::Team_Troopers.ES_Project.RulesController textCtrl, Team_Troopers.ES_Project.UserRulesController::getArray():java.util.ArrayList<java.lang.String>]
