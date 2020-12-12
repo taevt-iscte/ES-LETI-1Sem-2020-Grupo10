@@ -74,10 +74,10 @@ public class TableController implements Initializable {
 	  */
 	
 	private void addItems() {
-		TableEntry dci = new TableEntry("DCI", count.get(EvalType.PMD_DCI), count.get(EvalType.PLASMA_DCI), count.getOrDefault(EvalType.USER_DCI, 0));
-		TableEntry dii = new TableEntry("DII", count.get(EvalType.PMD_DII), count.get(EvalType.PLASMA_DII), count.getOrDefault(EvalType.USER_DII, 0));
-		TableEntry adci = new TableEntry("ADCI", count.get(EvalType.PMD_ADCI), count.get(EvalType.PLASMA_ADCI), count.getOrDefault(EvalType.USER_ADCI, 0));
-		TableEntry adii = new TableEntry("ADII", count.get(EvalType.PMD_ADII), count.get(EvalType.PLASMA_ADII), count.getOrDefault(EvalType.USER_ADII, 0));
+		TableEntry dci = new TableEntry("DCI", count.getOrDefault(EvalType.PMD_DCI, 0), count.getOrDefault(EvalType.PLASMA_DCI, 0), count.getOrDefault(EvalType.USER_DCI, 0));
+		TableEntry dii = new TableEntry("DII", count.getOrDefault(EvalType.PMD_DII, 0), count.getOrDefault(EvalType.PLASMA_DII, 0), count.getOrDefault(EvalType.USER_DII, 0));
+		TableEntry adci = new TableEntry("ADCI", count.getOrDefault(EvalType.PMD_ADCI, 0), count.getOrDefault(EvalType.PLASMA_ADCI, 0), count.getOrDefault(EvalType.USER_ADCI, 0));
+		TableEntry adii = new TableEntry("ADII", count.getOrDefault(EvalType.PMD_ADII, 0), count.getOrDefault(EvalType.PLASMA_ADII, 0), count.getOrDefault(EvalType.USER_ADII, 0));
 		ObservableList<TableEntry> list = FXCollections.observableArrayList(dci, dii, adci, adii);
 		table.getItems().setAll(list);
 	}
