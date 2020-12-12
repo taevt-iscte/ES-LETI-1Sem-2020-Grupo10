@@ -21,3 +21,6 @@ do Javadoc que mostrou-se ser mais complexo que o esperado mas, mais preocupante
 simplesmente poder conseguir criar testes, quanto mais ainda corrê-los. Com uma sensibilidade absurda quanto às dependências a serem utilizadas que não causassem perturbios para 
 com o JavaFX, chegámos à infeliz conclusão de que para ser possivel correr os testes utilizando um "test suite", era necessário tornar toda a aplicação inutilizada (retirando o 
 ficheiro module-info.java), o que nos parece algo absurdo. Dito isto, as provas de enviadas da cobertura dos testes unitários foram realizadas com a aplicação sem funcionamento.
+
+## Notas.
+Para correr e verificar o código dos testes, estes encontram-se no caminho src/test/java, tal como apresentado nas aulas práticas. Para verificar o Javadoc, este encontra-se na pasta Javadoc. Para verificar os code smells, os ficheiros txt resultantes do JDeodorant encontram-se na pasta "Code Smells". Para verificar os resultados (print screen) dos testes unitários, estes encontram-se na pasta "JUnit Test Results".
