@@ -4,7 +4,7 @@ João Polónio, 87367 //--//
 Tiago Torres, 87353 //--//
 José Raposo, 87183  //--//
 
-//--------------------------//-----------------------// - O que está na frente do código.
+### O que está na frente do código.
 
 Exceltify, aplicação desenvolvida no âmbito da cadeira de Engenharia do Software, ao receber um ficheiro de excel com dados relativos a parâmetros lidos de um ou mais métodos
 especificos, bem como a sua avaliação por parte de duas ferramentas avaliativas (iPlasma e PMD), decompondo o mesmo em blocos de informação a serem interpretados e reavaliados pela
@@ -13,7 +13,7 @@ como a de múltiplas maneiras de apresentar os valores finais de avaliação. A 
 próprias regras avaliativas com as métricas existentes a fim de poder devolver uma avaliação das mesmas, funcionando por isso como uma ferramenta altamente customizável pelo 
 utilizador.
 
-//--------------------------//-----------------------// - Problemas encontrados.
+### Problemas encontrados.
 
 Ao princípio, o uso de JavaFX no desenvolvimento do ambiente gráfico mostrou-se ser altamente benéfico na construção do código, tanto a nivel de organização de código, como também
 na complexidade do mesmo. No entanto, após a conclusão do do código, deparámo-nos com uma dimensão de problemas derivados de incompatibilidade para com o JavaFX, começou na geração
