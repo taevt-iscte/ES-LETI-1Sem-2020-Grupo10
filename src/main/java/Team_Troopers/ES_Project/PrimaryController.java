@@ -174,6 +174,7 @@ public class PrimaryController implements Initializable {
 		}
 		ArrayList<String> rules = new ArrayList<>();
 		ArrayList<String> op = new ArrayList<>();
+		System.out.println(userArray);
 		for (int i = 0; i < userArray.size(); i++) {
 			if (i % 2 == 0)
 				rules.add(userArray.get(i));
@@ -182,11 +183,13 @@ public class PrimaryController implements Initializable {
 		}
 		if (!rules.isEmpty())
 			for (ExcelRecord r : recordList) {
+				@SuppressWarnings("unchecked")
+				ArrayList<String> tempOp = (ArrayList<String>) op.clone();
 				ArrayList<Boolean> results = new ArrayList<>();
 				for (String rule : rules) {
 					results.add(applyRule(rule.split(" "), r));
 				}
-				boolean pass = calcPass(results, op);
+				boolean pass = calcPass(results, tempOp);
 				counting.put(r.userEval(pass), counting.getOrDefault(r.userEval(pass), 0) + 1);
 			}
 
@@ -250,7 +253,9 @@ public class PrimaryController implements Initializable {
 	private static boolean calcPass(ArrayList<Boolean> bools, ArrayList<String> op) {
 		boolean end = false;
 		int index1, index2, index3;
-		while (bools.size() != 1) {
+		System.out.println(bools);
+		System.out.println(op);
+		while (bools.size() > 1) {
 			if (!end) {
 				index1 = 0;
 				index2 = 1;
