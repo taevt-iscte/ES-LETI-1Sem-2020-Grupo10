@@ -17,7 +17,6 @@ import javafx.scene.control.ComboBox;
  * 
  * @see      PrimaryController
  * @see		 RuleCondition
- * @see		 Rules
  * @author   João Polónio
  */
 
@@ -41,7 +40,7 @@ public class RulesController implements Initializable {
 	/**
 	  * Permite construir um objeto da classe.
 	  * 
-	  * @param    list_r12     ArrayList que servirá de veiculo para as métricas e valores lógicos dados pelo utilizador.
+	  * @param    list_rl2     ArrayList que servirá de veiculo para as métricas e valores lógicos dados pelo utilizador.
 	  * @author   João Polónio
 	  */
 	

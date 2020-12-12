@@ -61,8 +61,8 @@ public class PrimaryController implements Initializable {
 	/**
 	 * Permite inicializar o controlador assim que o objeto root terminar de processar.
 	 * 
-	 * @param    location     localização do root object a usar inicializado. 
-	 * @param    resources    localização dos recursos a serem utilizados para localizar o root object.
+	 * @param    url     localização do root object a usar inicializado. 
+	 * @param    rb    localização dos recursos a serem utilizados para localizar o root object.
 	 * @author   João Polónio
 	 */
 
@@ -98,7 +98,9 @@ public class PrimaryController implements Initializable {
 	 * Método auxiliar desenvolvido com o propósito de adquirir os valores presentes na sheet da classe, a fim de os devolver a qualquer um dos controladores que assim
 	 * precisar.
 	 * 
-	 * @return
+	 * @param	file Ficheiro Excel a fazer parse
+	 * @throws java.io.IOException No caso do ficheiro não for encontrado
+	 * @return	Um ArrayList com registos do tipo ExcelRecord extraídos do ficheiro Excel
 	 * @author   Tiago Torres
 	 */
 	public ArrayList<ExcelRecord> parseExcel(File file) throws EncryptedDocumentException, IOException {
@@ -137,6 +139,8 @@ public class PrimaryController implements Initializable {
 	/**
 	 * Método auxiliar desenvolvido com o propósito de retirar os valores calculados a partir das regras do utilizador, devolvendo os valores default.
 	 * 
+	 * @param list	Lista de objetos ExcelRecord retirados do ficheiro Excel
+	 * @return Um HashMap com o tipo de avaliação e o seu número de ocurrências
 	 * @author   Tiago Torres
 	 */
 	public HashMap<EvalType, Integer> countTypes(ArrayList<ExcelRecord> list) {
@@ -155,6 +159,11 @@ public class PrimaryController implements Initializable {
 	/**
 	 * Método auxiliar responsável por atualizar os valores a serem utilizados pelos outros controladores relativamente à avaliação dos valores presentes no ficheiro.
 	 * 
+	 * @param counting HashMap com os tipos de avaliação das ferramentas contados
+	 * @param recordList	Lista de ExcelRecords do ficheiro Excel
+	 * @param userArray	Lista de métricas do utilizador para se fazer parse
+	 * @param useUser	Booleano para indicar se é para se fazer a contagem de utilizador
+	 * @return Um Hashmap atualizado com as avaliações baseadas nas regras do utilizador
 	 * @author   João Polónio
 	 */
 
@@ -376,7 +385,7 @@ public class PrimaryController implements Initializable {
 	 * Método auxiliar desenvolvido com o propósito de gerar uma ponte entre o controlador primário da GUI e o controlador da visualização textual de dados, criando
 	 * uma janela representativa, bem como chamando o seu controlador.
 	 * 
-	 * @see	  TextualControllor
+	 * @see	  TextualController
 	 * @author   João Polónio
 	 */
 

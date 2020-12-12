@@ -135,6 +135,7 @@ public class UserRulesController implements Initializable {
 	/**
 	  * Método auxiliar da classe que devolve uma lista vazia caso o textCtrl estiver vazio ou, caso contrário, adquire a informação.
 	  * 
+	  * @return ArrayList de métricas de utilizador caso existam ou uma lista vazia
 	  * @author   Tiago Torres
 	  */
 	

@@ -8,7 +8,7 @@ import Team_Troopers.ES_Project.RulesController;
  * 
  * @see      PrimaryController
  * @see		 RulesController
- * @see		 Rules
+ * @see		 Rule
  * @author   João Polónio
  */
 
@@ -25,16 +25,14 @@ public class RuleCondition {
 	  */
 	
 	public RuleCondition() {
-		this.metric ="";
-		this.operator = "";
-		this.value = 0;
+		this("","",0);
 	}
 	
 	/**
 	  * Permite construir um objeto da classe.
 	  * 
 	  * @param    metric     	Metrica a ser inserida na condição criada.
-	  * @param	  operador		Operador a ser utilizado na condição criada.
+	  * @param	  operator		Operador a ser utilizado na condição criada.
 	  * @param	  value			Valor a ser reservado por parte da condição criada.
 	  * @author   João Polónio
 	  */
@@ -47,6 +45,9 @@ public class RuleCondition {
 		}
 	}
 
+	/**
+	 * @hidden
+	 */
 	@Override
 	public String toString() {
 		return "RuleCondition [metric=" + metric + ", operator=" + operator + ", value=" + value + "]";

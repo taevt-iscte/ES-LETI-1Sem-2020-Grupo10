@@ -72,7 +72,7 @@
 				<configuration>
 					<javadocExecutable>${java.home}/bin/javadoc</javadocExecutable>
 					<stylesheetfile>${basedir}/src/main/javadoc/stylesheet.css</stylesheetfile>
-					<sourceFileExcludes>${project.basedir}src/main/java/module-info.java</sourceFileExcludes>
+					<sourceFileExcludes>${project.basedir}/src/main/java/module-info.java</sourceFileExcludes>
 					<show>public</show>
 				</configuration>
 			</plugin>

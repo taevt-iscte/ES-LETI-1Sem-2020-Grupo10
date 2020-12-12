@@ -3,7 +3,6 @@ package Backend;
 /**
  * Classe auxiliar responsável por desenvolver blocos de informação, entradas da tabela, para organizar cada uma das avaliações.
  * 
- * @see      TableController
  * @author   Tiago Torres
  */
 
