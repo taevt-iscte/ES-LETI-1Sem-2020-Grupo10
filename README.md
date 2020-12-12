@@ -16,11 +16,7 @@ utilizador.
 ## Problemas encontrados.
 
 Ao princípio, o uso de JavaFX no desenvolvimento do ambiente gráfico mostrou-se ser altamente benéfico na construção do código, tanto a nivel de organização de código, como também
-na complexidade do mesmo. No entanto, após a conclusão do do código, deparámo-nos com uma dimensão de problemas derivados de incompatibilidade para com o JavaFX, começou na geração
-do Javadoc que mostrou-se ser mais complexo que o esperado mas, mais preocupante ainda, foi nos testes unitários, que acabou por ser uma fonte absoluta de desperdício de tempo para
-simplesmente poder conseguir criar testes, quanto mais ainda corrê-los. Com uma sensibilidade absurda quanto às dependências a serem utilizadas que não causassem perturbios para 
-com o JavaFX, chegámos à infeliz conclusão de que para ser possivel correr os testes utilizando um "test suite", era necessário tornar toda a aplicação inutilizada (retirando o 
-ficheiro module-info.java), o que nos parece algo absurdo. Dito isto, as provas de enviadas da cobertura dos testes unitários foram realizadas com a aplicação sem funcionamento.
+na complexidade do mesmo. No entanto, após a conclusão do do código, deparámo-nos com uma dimensão de problemas derivados de incompatibilidade para com o JavaFX, tal como conversado com o professor. Podemos explicitar a complexidade do problema com o seguinte exemplo: para podermos correr os testes unitários temos de eliminar o module-info.java, porém isso impossibilita-nos de testar a GUI e outras funcionalidades diretamente derivadas da mesma, por exemplo o import excel, já que a mesma precisa do module-info.java para funcionar.
 
 ## Notas.
 Para correr e verificar o código dos testes, estes encontram-se no caminho src/test/java, tal como apresentado nas aulas práticas. Para verificar o Javadoc, este encontra-se na pasta Javadoc. Para verificar os code smells, os ficheiros txt resultantes do JDeodorant encontram-se na pasta "Code Smells". Para verificar os resultados (print screen) dos testes unitários, estes encontram-se na pasta "JUnit Test Results".
